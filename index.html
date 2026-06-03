@@ -3,742 +3,655 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Automotive Engineer</title>
+  <title>Ibrahim Reda Wasfy — Automotive Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
 
+  <style>
     :root {
       --black: #0a0a0a;
-      --carbon: #111214;
-      --steel: #1c1f24;
-      --chrome: #2e3138;
-      --muted: #4a4f5a;
-      --silver: #8a9099;
-      --light: #c8cdd6;
-      --white: #eef0f4;
-      --accent: #c8922a;
-      --accent-dim: #8a621c;
-      --red: #c0392b;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body: 'Cormorant Garamond', serif;
-      --font-mono: 'DM Mono', monospace;
+      --dark: #111111;
+      --panel: #161616;
+      --border: #2a2a2a;
+      --gold: #c8922a;
+      --gold-bright: #e8a83c;
+      --gold-dim: #7a5520;
+      --white: #f0ede8;
+      --gray: #888880;
+      --light-gray: #c0bdb8;
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--black);
-      color: var(--light);
-      font-family: var(--font-body);
-      font-size: 18px;
-      line-height: 1.7;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
       overflow-x: hidden;
       cursor: none;
     }
 
     /* Custom cursor */
     .cursor {
-      width: 10px; height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
       position: fixed;
-      top: 0; left: 0;
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.15s ease, opacity 0.15s ease;
       transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
     }
     .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(200,146,42,0.4);
-      border-radius: 50%;
       position: fixed;
-      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
-      transition: transform 0.35s cubic-bezier(.23,1,.32,1), opacity 0.3s ease;
       transform: translate(-50%, -50%);
+      transition: transform 0.18s ease-out, width 0.2s, height 0.2s, opacity 0.2s;
+      opacity: 0.6;
     }
     body:hover .cursor { opacity: 1; }
 
-    /* Noise overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.3;
-    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); }
 
-    /* ── NAV ── */
+    /* ─── NAV ─────────────────────────────────── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 48px;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
-      backdrop-filter: blur(2px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
     }
     .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
       letter-spacing: 0.15em;
-      color: var(--white);
+      color: var(--gold);
+      text-decoration: none;
     }
-    .nav-logo span { color: var(--accent); }
     .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
+      display: flex; gap: 36px; list-style: none;
     }
     .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--silver);
+      color: var(--gray);
       text-decoration: none;
-      transition: color 0.25s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--gold); }
 
-    /* ── HERO ── */
+    /* ─── HERO ────────────────────────────────── */
     #hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 60px 80px;
       position: relative;
       overflow: hidden;
     }
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 140px 64px 80px;
-      position: relative;
-      z-index: 2;
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(200,146,42,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(200,146,42,0.04) 0%, transparent 50%);
     }
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
+
+    /* Animated grid lines */
+    .grid-lines {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,146,42,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,146,42,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: gridPan 30s linear infinite;
+    }
+    @keyframes gridPan { from { background-position: 0 0; } to { background-position: 80px 80px; } }
+
+    /* Diagonal accent line */
+    .hero-line {
+      position: absolute;
+      top: 0; right: 25%;
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim) 40%, var(--gold) 60%, transparent);
+      opacity: 0.3;
+      transform: skewX(-8deg);
+    }
+
+    .hero-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
       letter-spacing: 0.3em;
-      color: var(--accent);
       text-transform: uppercase;
-      margin-bottom: 24px;
+      color: var(--gold);
+      margin-bottom: 20px;
       opacity: 0;
       animation: fadeUp 0.8s 0.3s forwards;
     }
+
     .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(5rem, 9vw, 9rem);
-      line-height: 0.92;
-      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 12vw, 11rem);
+      line-height: 0.9;
       letter-spacing: 0.02em;
+      color: var(--white);
       opacity: 0;
-      animation: fadeUp 0.9s 0.5s forwards;
+      animation: fadeUp 0.8s 0.5s forwards;
     }
-    .hero-name em {
-      font-style: normal;
-      color: var(--accent);
-      display: block;
+    .hero-name span { color: var(--gold); }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light-gray);
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
     }
-    .hero-tagline {
-      font-family: var(--font-body);
-      font-size: 1.15rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--silver);
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--gray);
       margin-top: 28px;
-      max-width: 380px;
-      line-height: 1.6;
       opacity: 0;
-      animation: fadeUp 0.9s 0.7s forwards;
+      animation: fadeUp 0.8s 0.9s forwards;
     }
+
     .hero-cta {
-      display: flex;
-      gap: 20px;
-      margin-top: 48px;
+      display: flex; gap: 16px; margin-top: 44px;
       opacity: 0;
-      animation: fadeUp 0.9s 0.9s forwards;
+      animation: fadeUp 0.8s 1.1s forwards;
+    }
+    .btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      border: 1px solid;
+      transition: all 0.3s;
+      display: inline-block;
     }
     .btn-primary {
-      display: inline-block;
-      padding: 14px 36px;
-      background: var(--accent);
+      background: var(--gold);
+      border-color: var(--gold);
       color: var(--black);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 400;
-      transition: background 0.25s, transform 0.2s;
+      font-weight: 600;
     }
-    .btn-primary:hover { background: #e0a835; transform: translateY(-2px); }
-    .btn-ghost {
-      display: inline-block;
-      padding: 13px 35px;
-      border: 1px solid var(--chrome);
-      color: var(--silver);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    .btn-primary:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--gray);
     }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-visual {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Animated engineering blueprint grid */
-    .blueprint-grid {
-      width: 100%;
-      height: 100%;
-      background-image:
-        linear-gradient(rgba(200,146,42,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,146,42,0.06) 1px, transparent 1px),
-        linear-gradient(rgba(200,146,42,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,146,42,0.03) 1px, transparent 1px);
-      background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
-      animation: gridShift 20s linear infinite;
-    }
-    @keyframes gridShift {
-      from { background-position: 0 0, 0 0, 0 0, 0 0; }
-      to   { background-position: 80px 80px, 80px 80px, 16px 16px, 16px 16px; }
-    }
-    .hero-svg-car {
-      position: absolute;
-      width: 90%;
-      max-width: 520px;
-      opacity: 0;
-      animation: fadeIn 1.2s 1s forwards;
-    }
     .hero-stats {
       position: absolute;
-      bottom: 80px;
-      left: 64px;
-      display: flex;
-      gap: 48px;
+      right: 60px; bottom: 80px;
+      display: flex; flex-direction: column; gap: 28px;
+      text-align: right;
       opacity: 0;
-      animation: fadeUp 0.9s 1.1s forwards;
+      animation: fadeUp 0.8s 1.3s forwards;
     }
-    .stat { text-align: left; }
-    .stat-number {
-      font-family: var(--font-display);
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 2.8rem;
-      color: var(--white);
+      color: var(--gold);
       line-height: 1;
     }
-    .stat-number span { color: var(--accent); }
     .stat-label {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-    .hero-line {
-      position: absolute;
-      right: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      opacity: 0.4;
+      color: var(--gray);
     }
 
-    /* ── SECTIONS BASE ── */
-    section { position: relative; }
-    .section-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 48px;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 24px;
-      margin-bottom: 64px;
-    }
-    .section-num {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
+
+    /* ─── SECTION COMMON ──────────────────────── */
+    section { padding: 100px 60px; }
+
+    .section-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
     }
     .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      color: var(--white);
-      letter-spacing: 0.05em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      letter-spacing: 0.03em;
       line-height: 1;
-    }
-    .section-rule {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, var(--chrome), transparent);
+      color: var(--white);
+      margin-bottom: 60px;
     }
 
-    /* ── ABOUT ── */
-    #about {
-      padding: 120px 0;
-      background: var(--carbon);
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 60px;
     }
+
+    /* ─── ABOUT ───────────────────────────────── */
+    #about { background: var(--dark); }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
+      grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: start;
     }
-    .about-portrait {
-      position: relative;
-    }
-    .portrait-frame {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: var(--steel);
-      position: relative;
-      overflow: hidden;
-    }
-    .portrait-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
-      opacity: 0.3;
-    }
-    .portrait-initials {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 7rem;
-      color: var(--chrome);
-      letter-spacing: 0.1em;
-    }
-    .portrait-accent-border {
-      position: absolute;
-      bottom: -12px; right: -12px;
-      width: 60%; height: 60%;
-      border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-    }
-    .portrait-label {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 24px;
-      padding-left: 2px;
-    }
-    .about-text h3 {
-      font-family: var(--font-body);
-      font-size: 1.9rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--white);
-      margin-bottom: 24px;
-      line-height: 1.35;
-    }
     .about-text p {
-      color: var(--silver);
-      font-size: 1rem;
-      line-height: 1.85;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--light-gray);
       margin-bottom: 20px;
-      font-weight: 300;
     }
-    .about-text p strong { color: var(--light); font-weight: 600; }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 36px;
-    }
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      background: var(--steel);
-      border-left: 2px solid var(--chrome);
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .skill-item:hover { border-color: var(--accent); background: var(--chrome); }
-    .skill-item .dot {
-      width: 5px; height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .skill-item span {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      color: var(--silver);
-      text-transform: uppercase;
-    }
+    .about-text p strong { color: var(--white); font-weight: 500; }
 
-    /* ── EXPERIENCE ── */
-    #experience {
-      padding: 120px 0;
-      background: var(--black);
+    .about-sidebar {}
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .timeline {
-      position: relative;
-      padding-left: 40px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 8px; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--accent), var(--chrome), transparent);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 60px;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-    .timeline-item.visible { opacity: 1; transform: translateX(0); }
-    .timeline-dot {
-      position: absolute;
-      left: -45px; top: 8px;
-      width: 10px; height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 16px rgba(200,146,42,0.5);
-    }
-    .timeline-date {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
+    .info-row:last-child { border-bottom: none; }
+    .info-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
       letter-spacing: 0.2em;
-      color: var(--accent);
       text-transform: uppercase;
+      color: var(--gray);
+    }
+    .info-val {
+      font-size: 0.9rem;
+      color: var(--white);
+      text-align: right;
+    }
+    .info-val a { color: var(--gold); text-decoration: none; }
+    .info-val a:hover { color: var(--gold-bright); }
+
+    /* ─── EXPERIENCE ──────────────────────────── */
+    #experience { background: var(--black); }
+    .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .exp-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      padding: 32px 40px;
+      transition: border-color 0.3s, background 0.3s;
+      cursor: default;
+    }
+    .exp-item:hover {
+      border-left-color: var(--gold);
+      background: #1a1a1a;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 8px;
     }
-    .timeline-role {
-      font-family: var(--font-display);
-      font-size: 1.9rem;
-      color: var(--white);
+    .exp-org {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
       letter-spacing: 0.05em;
-      line-height: 1.1;
-      margin-bottom: 4px;
+      color: var(--white);
+      text-transform: uppercase;
     }
-    .timeline-org {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--silver);
+    .exp-period {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .exp-role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
       margin-bottom: 16px;
     }
-    .timeline-desc {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 620px;
-      line-height: 1.8;
+    .exp-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 6px;
     }
-    .timeline-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
     }
-    .tag {
-      padding: 4px 12px;
-      border: 1px solid var(--chrome);
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--gold-dim);
+      font-size: 0.75rem;
     }
-    .tag:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── PROJECTS ── */
-    #projects {
-      padding: 120px 0;
-      background: var(--carbon);
-    }
+    /* ─── PROJECTS ────────────────────────────── */
+    #projects { background: var(--dark); }
     .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2px;
+    }
+    .project-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover { background: #1a1a1a; }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+    .project-card:hover .project-year { color: rgba(200,146,42,0.15); }
+    .project-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .project-tools {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tool-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      border: 1px solid var(--gold-dim);
+      padding: 4px 10px;
+    }
+
+    /* ─── ACHIEVEMENTS ────────────────────────── */
+    #achievements { background: var(--black); }
+    .ach-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-    .project-card {
-      background: var(--steel);
-      padding: 44px 36px;
+    .ach-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 40px;
+      text-align: center;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
       transition: background 0.3s;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s, transform 0.6s, background 0.3s;
     }
-    .project-card.visible { opacity: 1; transform: translateY(0); }
-    .project-card:hover { background: var(--chrome); }
-    .project-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      transform-origin: left;
-    }
-    .project-card:hover::after { transform: scaleX(1); }
-    .project-num {
-      font-family: var(--font-display);
-      font-size: 5rem;
-      color: var(--chrome);
-      position: absolute;
-      top: 16px; right: 24px;
-      line-height: 1;
-      transition: color 0.3s;
-    }
-    .project-card:hover .project-num { color: rgba(200,146,42,0.12); }
-    .project-icon {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+    .ach-card:hover { background: #1a1a1a; }
+    .ach-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
       display: block;
     }
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      color: var(--white);
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-      line-height: 1.1;
+    .ach-place {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
     }
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-    .project-accent {
-      display: inline-block;
-      margin-top: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+    .ach-event {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    /* ── COMPETENCIES ── */
-    #competencies {
-      padding: 120px 0;
-      background: var(--black);
-    }
-    .comp-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-    }
-    .comp-card {
-      padding: 48px;
-      background: var(--carbon);
-      border-top: 1px solid var(--steel);
-      transition: background 0.3s;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s, transform 0.6s, background 0.3s;
-    }
-    .comp-card.visible { opacity: 1; transform: translateY(0); }
-    .comp-card:hover { background: var(--steel); }
-    .comp-card-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .comp-icon-wrap {
-      width: 44px; height: 44px;
-      background: rgba(200,146,42,0.1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-    }
-    .comp-card-title {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
       color: var(--white);
-      letter-spacing: 0.05em;
+      margin-bottom: 8px;
     }
-    .comp-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .comp-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.92rem;
-      color: var(--muted);
+    .ach-detail {
+      font-size: 0.82rem;
+      color: var(--gray);
       line-height: 1.6;
     }
-    .comp-list li::before {
-      content: '—';
-      color: var(--accent-dim);
-      flex-shrink: 0;
-      font-family: var(--font-mono);
+
+    /* ─── SKILLS ──────────────────────────────── */
+    #skills { background: var(--dark); }
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 60px;
+    }
+    .skill-group-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-list { display: flex; flex-direction: column; gap: 12px; }
+    .skill-item {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .skill-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--light-gray);
+    }
+    .skill-bar {
+      width: 80px; height: 2px;
+      background: var(--border);
+      position: relative;
+    }
+    .skill-fill {
+      position: absolute;
+      left: 0; top: 0; height: 100%;
+      background: var(--gold);
     }
 
-    /* ── CONTACT ── */
-    #contact {
-      padding: 140px 0 100px;
-      background: var(--carbon);
+    .tag-cloud {
+      display: flex; flex-wrap: wrap; gap: 10px;
     }
-    .contact-inner {
-      max-width: 760px;
-      margin: 0 auto;
+    .skill-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .skill-tag:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ─── INTERNSHIPS ─────────────────────────── */
+    #internships { background: var(--black); }
+    .intern-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .intern-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      transition: background 0.3s, border-left-color 0.3s;
+      border-left: 3px solid transparent;
+    }
+    .intern-card:hover { background: #1a1a1a; border-left-color: var(--gold); }
+    .intern-company {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .intern-role {
+      font-size: 0.8rem;
+      color: var(--gold-dim);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .intern-date {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+    .intern-notes {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ─── CONTACT ─────────────────────────────── */
+    #contact {
+      background: var(--dark);
       text-align: center;
     }
-    .contact-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 7vw, 7rem);
-      color: var(--white);
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .contact-email {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--gold);
       letter-spacing: 0.04em;
-      line-height: 0.95;
-      margin-bottom: 32px;
+      display: block;
+      margin-bottom: 40px;
+      text-decoration: none;
+      transition: color 0.2s;
     }
-    .contact-headline em {
-      font-style: normal;
-      color: var(--accent);
-    }
-    .contact-sub {
-      font-family: var(--font-body);
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--silver);
-      margin-bottom: 56px;
-      font-weight: 300;
-    }
+    .contact-email:hover { color: var(--gold-bright); }
     .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
     }
     .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 28px;
-      border: 1px solid var(--chrome);
-      color: var(--silver);
-      text-decoration: none;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+      color: var(--gray);
+      text-decoration: none;
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
     }
-    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-    .contact-link svg { width: 16px; height: 16px; fill: currentColor; }
+    .contact-link:hover { color: var(--gold); border-color: var(--gold); }
 
-    /* ── FOOTER ── */
+    /* ─── FOOTER ──────────────────────────────── */
     footer {
+      padding: 32px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border);
       background: var(--black);
-      padding: 32px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--steel);
     }
     .footer-copy {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
       letter-spacing: 0.15em;
-      color: var(--muted);
       text-transform: uppercase;
+      color: var(--gray);
     }
     .footer-logo {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      letter-spacing: 0.15em;
-      color: var(--chrome);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      color: var(--gold-dim);
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* ── SCROLL INDICATOR ── */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
+    /* ─── SCROLL REVEAL ───────────────────────── */
+    .reveal {
       opacity: 0;
-      animation: fadeIn 1s 1.4s forwards;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .scroll-label {
-      font-family: var(--font-mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; height: 40px; }
-      50% { opacity: 1; height: 56px; }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
+    /* ─── RESPONSIVE ──────────────────────────── */
     @media (max-width: 900px) {
-      nav { padding: 20px 24px; }
-      .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 120px 24px 60px; }
-      .hero-right { display: none; }
-      .hero-stats { position: static; display: flex; gap: 32px; margin-top: 48px; }
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 20px; }
+      section { padding: 70px 24px; }
+      hr.divider { margin: 0 24px; }
+      #hero { padding: 0 24px 70px; }
+      .hero-stats { right: 24px; bottom: 70px; flex-direction: row; gap: 32px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .comp-grid { grid-template-columns: 1fr; }
-      .section-inner { padding: 0 24px; }
+      .ach-grid { grid-template-columns: 1fr; }
+      .intern-grid { grid-template-columns: 1fr; }
+      .skills-layout { grid-template-columns: 1fr; gap: 40px; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { position: static; margin-top: 40px; flex-direction: row; justify-content: flex-start; }
     }
   </style>
 </head>
@@ -746,415 +659,506 @@
 
   <!-- Custom cursor -->
   <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
-  <!-- Navigation -->
+  <!-- NAV -->
   <nav>
-    <div class="nav-logo">AUTO<span>.</span>ENG</div>
+    <a href="#hero" class="nav-logo">IRW</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#competencies">Skills</a></li>
+      <li><a href="#achievements">Results</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <section id="hero">
-    <div class="hero-left">
-      <p class="hero-eyebrow">Automotive Engineer · Motorsport · Manufacturing</p>
-      <h1 class="hero-name">
-        YOUR<br>
-        <em>NAME</em>
-      </h1>
-      <p class="hero-tagline">
-        Where precision engineering meets competitive motorsport. Designing, building, and leading — from Formula Student circuits to Shell Eco-Marathon runs.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-ghost">Get In Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-number">2<span>×</span></div>
-          <div class="stat-label">Competitions</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">1<span>+</span></div>
-          <div class="stat-label">Teams Led</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">FS<span>&</span>SEM</div>
-          <div class="stat-label">Programs</div>
-        </div>
-      </div>
+    <div class="hero-bg"></div>
+    <div class="grid-lines"></div>
+    <div class="hero-line"></div>
+
+    <p class="hero-label">Automotive Engineer · Formula Student · Shell Eco-Marathon</p>
+    <h1 class="hero-name">Ibrahim<br><span>Reda</span><br>Wasfy</h1>
+    <p class="hero-title">Vehicle Dynamics · Design · Leadership</p>
+    <p class="hero-desc">
+      Building high-performance vehicles from the ground up. Team Leader at HFS Racing Team, 
+      engineering complete vehicle systems through calculation, CAD, simulation, and hands-on manufacturing.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
     </div>
 
-    <div class="hero-right">
-      <div class="hero-visual">
-        <div class="blueprint-grid"></div>
-        <!-- Formula car SVG illustration -->
-        <svg class="hero-svg-car" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <!-- Ground shadow -->
-          <ellipse cx="300" cy="200" rx="240" ry="10" fill="rgba(0,0,0,0.5)"/>
-          <!-- Rear wing -->
-          <rect x="65" y="70" width="80" height="6" rx="2" fill="#c8922a" filter="url(#glow)"/>
-          <rect x="75" y="76" width="4" height="28" fill="#8a621c"/>
-          <rect x="121" y="76" width="4" height="28" fill="#8a621c"/>
-          <!-- Main body -->
-          <path d="M120 155 Q100 145 80 148 L68 160 Q64 170 80 172 L520 172 Q536 170 532 160 L520 148 Q500 145 480 155 Z" fill="#1c1f24" stroke="#2e3138" stroke-width="1"/>
-          <!-- Cockpit surround -->
-          <path d="M220 155 Q230 110 270 100 L330 100 Q370 110 380 155 Z" fill="#111214" stroke="#c8922a" stroke-width="1.5" filter="url(#glow)"/>
-          <!-- Sidepods -->
-          <path d="M170 148 Q175 130 200 128 L240 128 L240 155 Z" fill="#1c1f24" stroke="#2e3138" stroke-width="1"/>
-          <path d="M430 148 Q425 130 400 128 L360 128 L360 155 Z" fill="#1c1f24" stroke="#2e3138" stroke-width="1"/>
-          <!-- Nose cone -->
-          <path d="M480 155 L520 152 L560 158 L560 165 L520 168 L480 165 Z" fill="#1c1f24" stroke="#c8922a" stroke-width="1"/>
-          <!-- Front wing -->
-          <rect x="520" y="163" width="60" height="5" rx="1" fill="#c8922a" filter="url(#glow)"/>
-          <rect x="524" y="150" width="3" height="13" fill="#8a621c"/>
-          <rect x="573" y="150" width="3" height="13" fill="#8a621c"/>
-          <!-- Wheels rear -->
-          <circle cx="110" cy="172" r="26" fill="#0a0a0a" stroke="#2e3138" stroke-width="2"/>
-          <circle cx="110" cy="172" r="16" fill="#111214"/>
-          <circle cx="110" cy="172" r="5" fill="#c8922a"/>
-          <!-- Wheels front -->
-          <circle cx="490" cy="172" r="26" fill="#0a0a0a" stroke="#2e3138" stroke-width="2"/>
-          <circle cx="490" cy="172" r="16" fill="#111214"/>
-          <circle cx="490" cy="172" r="5" fill="#c8922a"/>
-          <!-- Cockpit opening -->
-          <ellipse cx="300" cy="120" rx="40" ry="16" fill="#0a0a0a" stroke="#c8922a" stroke-width="1"/>
-          <!-- Halo -->
-          <path d="M262 118 Q300 108 338 118" fill="none" stroke="#c8922a" stroke-width="3" filter="url(#glow)"/>
-          <!-- Accent lines -->
-          <line x1="200" y1="155" x2="400" y2="155" stroke="#c8922a" stroke-width="1" opacity="0.4"/>
-          <!-- Number plate -->
-          <rect x="268" y="130" width="64" height="20" rx="2" fill="#c8922a" opacity="0.15" stroke="#c8922a" stroke-width="0.5"/>
-          <text x="300" y="145" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#c8922a" opacity="0.8">FS · 01</text>
-        </svg>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Competition Teams</div>
       </div>
-      <div class="hero-line"></div>
-    </div>
-
-    <div class="scroll-indicator">
-      <span class="scroll-label">Scroll</span>
-      <div class="scroll-line"></div>
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Cars Built</div>
+      </div>
+      <div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Internships</div>
+      </div>
     </div>
   </section>
 
-  <!-- About -->
+  <hr class="divider" />
+
+  <!-- ABOUT -->
   <section id="about">
-    <div class="section-inner">
-      <div class="section-header" style="padding-top:120px;">
-        <span class="section-num">01</span>
-        <h2 class="section-title">ABOUT</h2>
-        <div class="section-rule"></div>
+    <p class="section-tag reveal">Profile</p>
+    <h2 class="section-title reveal">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          A motorsport enthusiast turned engineer. I've followed my passion for vehicles since childhood, 
+          ultimately earning a <strong>Bachelor of Automotive Engineering</strong> from Capital (Helwan) University — 
+          Mataria Branch, graduating 2026.
+        </p>
+        <p>
+          My hands-on journey spans two competitive engineering teams: <strong>Head of Vehicle Dynamics</strong> 
+          in Helwan Racing Team E-Rally, and currently <strong>Team Leader</strong> in HFS Racing Team, 
+          where I oversee the full vehicle development cycle — from engineering calculations and CAD design 
+          through simulation, manufacturing, assembly, and testing.
+        </p>
+        <p>
+          Beyond motorsport, I've gained real-world workshop experience across six industry internships, 
+          working with brands from Jaguar Land Rover to exotic marques like McLaren, Lamborghini, and Porsche.
+        </p>
       </div>
-      <div class="about-grid">
-        <div class="about-portrait">
-          <div class="portrait-frame">
-            <div class="portrait-initials">YN</div>
-          </div>
-          <div class="portrait-accent-border"></div>
-          <p class="portrait-label">Automotive Engineer</p>
+      <div class="about-sidebar reveal">
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-val">Obour City, Cairo, Egypt</span>
         </div>
-        <div class="about-text">
-          <h3>"Engineering is not just what I study — it's how I think, build, and lead."</h3>
-          <p>
-            I am an automotive engineer with a passion that extends well beyond the classroom. From competing in <strong>Shell Eco-Marathon</strong> to building and leading a <strong>Formula Student</strong> race car team, I have experienced firsthand the intensity of designing and manufacturing a vehicle under real competition pressure.
-          </p>
-          <p>
-            As team leader of a Formula Student program, I bridged the technical and managerial worlds — coordinating multidisciplinary sub-teams, managing timelines, and making critical engineering decisions under constraints. On the technical side, I contributed hands-on to <strong>chassis fabrication, suspension setup, powertrain integration,</strong> and vehicle dynamics tuning.
-          </p>
-          <p>
-            Beyond motorsport, my internship experience in <strong>automotive after-sales departments</strong> gave me a deep appreciation for workshop operations, diagnostics, customer service workflows, and the lifecycle of vehicles in the real market.
-          </p>
-          <div class="skills-grid">
-            <div class="skill-item"><div class="dot"></div><span>Vehicle Dynamics</span></div>
-            <div class="skill-item"><div class="dot"></div><span>Chassis Design</span></div>
-            <div class="skill-item"><div class="dot"></div><span>Team Leadership</span></div>
-            <div class="skill-item"><div class="dot"></div><span>Manufacturing</span></div>
-            <div class="skill-item"><div class="dot"></div><span>Powertrain Systems</span></div>
-            <div class="skill-item"><div class="dot"></div><span>After-Sales Ops</span></div>
-            <div class="skill-item"><div class="dot"></div><span>SolidWorks / CAD</span></div>
-            <div class="skill-item"><div class="dot"></div><span>Technical Reporting</span></div>
-          </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-val"><a href="mailto:ibrahimreda527@gmail.com">ibrahimreda527@gmail.com</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Phone</span>
+          <span class="info-val">+20 155 088 6532</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">LinkedIn</span>
+          <span class="info-val"><a href="https://linkedin.com/in/ibrahimwasfy" target="_blank">ibrahimwasfy</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Languages</span>
+          <span class="info-val">Arabic (Native) · English (Fluent)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Military Status</span>
+          <span class="info-val">Exempted</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Nationality</span>
+          <span class="info-val">Egyptian</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience -->
+  <hr class="divider" />
+
+  <!-- EXPERIENCE -->
   <section id="experience">
-    <div class="section-inner">
-      <div class="section-header" style="padding-top:120px;">
-        <span class="section-num">02</span>
-        <h2 class="section-title">EXPERIENCE</h2>
-        <div class="section-rule"></div>
+    <p class="section-tag reveal">Career</p>
+    <h2 class="section-title reveal">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-org">HFS Racing Team — Formula Student</div>
+            <div class="exp-role">Team Leader</div>
+          </div>
+          <div class="exp-period">Jun 2025 — Present</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Led a multidisciplinary team across vehicle dynamics, powertrain, aerodynamics, and frame to develop a Formula Student prototype</li>
+          <li>Managed project timeline, setting milestones to meet Formula Student UK competition deadlines</li>
+          <li>Represented the team in external communications with sponsors</li>
+          <li>Coordinated preparation for Formula Student UK, aligning technical work with competition judging criteria</li>
+          <li>Directed steering system development including geometry definition, Ackermann optimization, and handling performance analysis</li>
+        </ul>
       </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">20XX — Present</div>
-          <div class="timeline-role">TEAM CAPTAIN</div>
-          <div class="timeline-org">Formula Student Team — [University Name]</div>
-          <div class="timeline-desc">Led a multidisciplinary engineering team of 20+ members through the full design, manufacturing, and competition cycle of a formula-style race car. Managed sub-teams across chassis, powertrain, suspension, electronics, and aerodynamics. Represented the team in technical inspections and business presentations at the international competition.</div>
-          <div class="timeline-tags">
-            <span class="tag">Team Management</span>
-            <span class="tag">Technical Direction</span>
-            <span class="tag">Budget Planning</span>
-            <span class="tag">Stakeholder Relations</span>
-          </div>
-        </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">20XX</div>
-          <div class="timeline-role">CHASSIS & SUSPENSION ENGINEER</div>
-          <div class="timeline-org">Formula Student Team — [University Name]</div>
-          <div class="timeline-desc">Designed and fabricated steel space-frame chassis components, performed FEA analysis on critical structural members, and executed suspension geometry calculations. Conducted hands-on welding, fabrication, and assembly of the race car from raw materials to a competition-ready vehicle.</div>
-          <div class="timeline-tags">
-            <span class="tag">FEA Analysis</span>
-            <span class="tag">SolidWorks</span>
-            <span class="tag">Fabrication</span>
-            <span class="tag">Suspension Design</span>
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-org">Helwan Racing Team — E-Rally</div>
+            <div class="exp-role">Head of Vehicle Dynamics</div>
           </div>
+          <div class="exp-period">Mar 2025 — Jan 2026</div>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">20XX</div>
-          <div class="timeline-role">ENGINEERING COMPETITOR</div>
-          <div class="timeline-org">Shell Eco-Marathon — [Location]</div>
-          <div class="timeline-desc">Participated in the Shell Eco-Marathon, designing and optimizing a fuel-efficient prototype vehicle. Focused on minimizing aerodynamic drag and drivetrain losses to achieve maximum fuel economy. Contributed to the design of the body shell and the energy management strategy during the event.</div>
-          <div class="timeline-tags">
-            <span class="tag">Fuel Efficiency</span>
-            <span class="tag">Aerodynamics</span>
-            <span class="tag">Prototype Build</span>
-            <span class="tag">Energy Management</span>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">20XX</div>
-          <div class="timeline-role">AFTER-SALES INTERN</div>
-          <div class="timeline-org">[Automotive Dealership / Workshop Name]</div>
-          <div class="timeline-desc">Worked within the service and after-sales department of an automotive workshop. Gained practical exposure to vehicle diagnostics, warranty claim processing, customer interactions, and workshop scheduling. Observed and assisted with maintenance and repair procedures across a range of vehicle platforms.</div>
-          <div class="timeline-tags">
-            <span class="tag">Vehicle Diagnostics</span>
-            <span class="tag">Workshop Operations</span>
-            <span class="tag">Customer Service</span>
-            <span class="tag">Technical Documentation</span>
-          </div>
-        </div>
+        <ul class="exp-bullets">
+          <li>Led and managed the complete Vehicle Dynamics team, setting technical direction and project priorities</li>
+          <li>Managed budgets, timelines, and resources across the department</li>
+          <li>Supervised the work through the manufacturing phase</li>
+        </ul>
       </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-org">Helwan Racing Team — E-Rally</div>
+            <div class="exp-role">Vehicle Dynamics Vice Head</div>
+          </div>
+          <div class="exp-period">Sep 2024 — Mar 2025</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Mechanical design and calculations for Urban and Prototype cars</li>
+          <li>Engineering BOM and DBR documentation</li>
+          <li>Led the preparation phase for new team candidates</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-org">Helwan Racing Team — E-Rally</div>
+            <div class="exp-role">Vehicle Dynamics Member</div>
+          </div>
+          <div class="exp-period">Jul 2023 — Sep 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Steering and brake calculations for Urban car</li>
+          <li>Mechanical design and FEA for steering parts</li>
+          <li>Authored the design report for vehicle dynamics section</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-org">Helwan Racing Team</div>
+            <div class="exp-role">Fundraising & Public Relations</div>
+          </div>
+          <div class="exp-period">Sep 2024 — Jan 2026</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Secured financial support and cultivated donor relationships</li>
+          <li>Prepared and presented sponsorship proposals</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-org">Revitup Drifting Competition</div>
+            <div class="exp-role">Motorsport Organizer</div>
+          </div>
+          <div class="exp-period">Dec 2022 — Sep 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed and drew competition tracks</li>
+          <li>Managed event operations: racer safety, car handling, audience management, and incident response</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
-  <!-- Projects -->
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
   <section id="projects">
-    <div class="section-inner">
-      <div class="section-header" style="padding-top:120px;">
-        <span class="section-num">03</span>
-        <h2 class="section-title">PROJECTS</h2>
-        <div class="section-rule"></div>
-      </div>
-    </div>
+    <p class="section-tag reveal">Engineering Work</p>
+    <h2 class="section-title reveal">Projects</h2>
     <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-num">01</div>
-        <span class="project-icon">🏎</span>
-        <div class="project-title">FORMULA STUDENT RACE CAR</div>
-        <div class="project-desc">End-to-end design and manufacture of a single-seat formula race car, from concept to competition. Responsible for overall systems integration and structural integrity sign-off.</div>
-        <span class="project-accent">→ Competition Vehicle</span>
+
+      <div class="project-card reveal">
+        <div class="project-year">2026</div>
+        <div class="project-name">Formula Student One-Seater</div>
+        <p class="project-desc">
+          Owned the complete steering system development from concept to final hardware. Designed geometry 
+          based on Ackermann principles and tire slip characteristics. Developed full rack and pinion system 
+          including ratio selection, rack travel, and steering effort. Designed and validated full steering 
+          box assembly integrated with chassis and suspension constraints.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">SolidWorks</span>
+          <span class="tool-tag">Matlab</span>
+          <span class="tool-tag">Optimum Kinematics</span>
+          <span class="tool-tag">Excel</span>
+        </div>
       </div>
-      <div class="project-card">
-        <div class="project-num">02</div>
-        <span class="project-icon">⚙️</span>
-        <div class="project-title">SUSPENSION GEOMETRY OPTIMIZATION</div>
-        <div class="project-desc">Developed a parametric model for double-wishbone suspension kinematics, optimizing camber gain, roll center migration, and anti-dive/squat characteristics for track performance.</div>
-        <span class="project-accent">→ Vehicle Dynamics</span>
+
+      <div class="project-card reveal">
+        <div class="project-year">2025</div>
+        <div class="project-name">Gasoline Urban Car</div>
+        <p class="project-desc">
+          Built a Gasoline Urban car from scratch for Shell Eco-Marathon, running in parallel with the 
+          Electric Prototype. Full development cycle: calculations, design, manufacturing, and testing. 
+          Achieved 6th place in the Urban Gasoline Category at Shell Eco-Marathon Doha, Qatar.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">SolidWorks</span>
+          <span class="tool-tag">Excel</span>
+        </div>
       </div>
-      <div class="project-card">
-        <div class="project-num">03</div>
-        <span class="project-icon">🌿</span>
-        <div class="project-title">SHELL ECO-MARATHON PROTOTYPE</div>
-        <div class="project-desc">Ultra-lightweight fuel economy prototype targeting maximum energy efficiency. Designed aerodynamic body shell using CFD principles and developed a low-rolling-resistance drivetrain solution.</div>
-        <span class="project-accent">→ Efficiency Engineering</span>
+
+      <div class="project-card reveal">
+        <div class="project-year">2025</div>
+        <div class="project-name">Electric Prototype Car</div>
+        <p class="project-desc">
+          Developed an Electric Prototype vehicle in parallel with the Urban Gasoline car for Shell 
+          Eco-Marathon. Passed full Technical Inspection at the Doha competition, covering all safety 
+          and performance scrutineering requirements.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">SolidWorks</span>
+          <span class="tool-tag">Excel</span>
+        </div>
       </div>
-      <div class="project-card">
-        <div class="project-num">04</div>
-        <span class="project-icon">🏗️</span>
-        <div class="project-title">SPACE-FRAME CHASSIS DESIGN</div>
-        <div class="project-desc">Designed and validated a 4130 chromoly steel space-frame chassis using SolidWorks and ANSYS FEA. Balanced stiffness targets with minimum weight in line with Formula SAE regulations.</div>
-        <span class="project-accent">→ Structural Engineering</span>
+
+      <div class="project-card reveal">
+        <div class="project-year">2024</div>
+        <div class="project-name">Electric Urban Car</div>
+        <p class="project-desc">
+          Built an Electric Urban car from scratch through the complete engineering cycle — calculation, 
+          design, manufacturing, and testing — to participate in the EVER competition. 
+          Achieved 1st Place Overall in the Dynamic Track event.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">SolidWorks</span>
+          <span class="tool-tag">Excel</span>
+        </div>
       </div>
-      <div class="project-card">
-        <div class="project-num">05</div>
-        <span class="project-icon">🔧</span>
-        <div class="project-title">WORKSHOP EFFICIENCY STUDY</div>
-        <div class="project-desc">During after-sales internship, analyzed service bay workflow and technician throughput data to identify bottlenecks in the repair order lifecycle — proposals led to reduced average turnaround time.</div>
-        <span class="project-accent">→ Process Improvement</span>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <p class="section-tag reveal">Competition Results</p>
+    <h2 class="section-title reveal">Achievements</h2>
+    <div class="ach-grid">
+      <div class="ach-card reveal">
+        <span class="ach-icon">🏆</span>
+        <div class="ach-place">1st</div>
+        <div class="ach-event">EVER Egypt 2024</div>
+        <p class="ach-detail">1st Place Overall Dynamic Track<br>North Coast, Egypt</p>
       </div>
-      <div class="project-card">
-        <div class="project-num">06</div>
-        <span class="project-icon">📐</span>
-        <div class="project-title">POWERTRAIN INTEGRATION</div>
-        <div class="project-desc">Engineered mounting solutions and drivetrain routing for engine installation in a Formula Student car, including exhaust packaging, cooling layout, and fuel system integration within tight dimensional constraints.</div>
-        <span class="project-accent">→ Powertrain Systems</span>
+      <div class="ach-card reveal">
+        <span class="ach-icon">🏅</span>
+        <div class="ach-place">6th</div>
+        <div class="ach-event">Shell Eco-Marathon 2025</div>
+        <p class="ach-detail">Urban Gasoline Category<br>Doha, Qatar — Passed Technical Inspection for both Urban &amp; Prototype</p>
+      </div>
+      <div class="ach-card reveal">
+        <span class="ach-icon">✅</span>
+        <div class="ach-place">TI ✓</div>
+        <div class="ach-event">Shell Eco-Marathon 2025</div>
+        <p class="ach-detail">Technical Inspection passed<br>Urban &amp; Prototype Cars — Doha, Qatar</p>
       </div>
     </div>
   </section>
 
-  <!-- Competencies -->
-  <section id="competencies">
-    <div class="section-inner">
-      <div class="section-header" style="padding-top:120px;">
-        <span class="section-num">04</span>
-        <h2 class="section-title">COMPETENCIES</h2>
-        <div class="section-rule"></div>
+  <hr class="divider" />
+
+  <!-- INTERNSHIPS -->
+  <section id="internships">
+    <p class="section-tag reveal">Industry Exposure</p>
+    <h2 class="section-title reveal">Internships</h2>
+    <div class="intern-grid">
+
+      <div class="intern-card reveal">
+        <div class="intern-company">Ezz-Elarab Automotive Group</div>
+        <div class="intern-role">Engineer Intern</div>
+        <div class="intern-date">September 2024 · 6th of October, Giza</div>
+        <p class="intern-notes">Automotive Engineering training center courses; attended engineer briefings and new model launch meetings.</p>
       </div>
-    </div>
-    <div class="section-inner">
-      <div class="comp-grid">
-        <div class="comp-card">
-          <div class="comp-card-header">
-            <div class="comp-icon-wrap">⚙️</div>
-            <div class="comp-card-title">TECHNICAL ENGINEERING</div>
-          </div>
-          <ul class="comp-list">
-            <li>Vehicle dynamics analysis and suspension kinematics</li>
-            <li>Structural design and FEA simulation (ANSYS, SolidWorks)</li>
-            <li>Engine systems and powertrain integration</li>
-            <li>Aerodynamics and CFD fundamentals</li>
-            <li>Manufacturing processes: welding, CNC, composites</li>
-            <li>Technical documentation and engineering reports</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <div class="comp-card-header">
-            <div class="comp-icon-wrap">👥</div>
-            <div class="comp-card-title">LEADERSHIP & MANAGEMENT</div>
-          </div>
-          <ul class="comp-list">
-            <li>Leading multidisciplinary engineering teams</li>
-            <li>Project scheduling, milestones, and risk management</li>
-            <li>Budget management and supplier negotiation</li>
-            <li>Sponsorship acquisition and stakeholder presentations</li>
-            <li>Technical event coordination and competition logistics</li>
-            <li>Mentoring and knowledge transfer across team levels</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <div class="comp-card-header">
-            <div class="comp-icon-wrap">🏭</div>
-            <div class="comp-card-title">MANUFACTURING & HANDS-ON</div>
-          </div>
-          <ul class="comp-list">
-            <li>Hands-on fabrication: cutting, welding, assembly</li>
-            <li>Prototype construction and iteration cycles</li>
-            <li>Workshop safety and quality control procedures</li>
-            <li>Tooling, jigs, and fixture design</li>
-            <li>Vehicle assembly and system commissioning</li>
-            <li>Track testing, data logging, and setup adjustments</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <div class="comp-card-header">
-            <div class="comp-icon-wrap">🔩</div>
-            <div class="comp-card-title">AFTER-SALES & SERVICE</div>
-          </div>
-          <ul class="comp-list">
-            <li>Vehicle diagnostics and fault identification</li>
-            <li>Warranty and service order management</li>
-            <li>Customer-facing technical communication</li>
-            <li>Workshop scheduling and bay utilisation</li>
-            <li>OEM technical manuals and service bulletins</li>
-            <li>Aftersales process mapping and improvement</li>
-          </ul>
-        </div>
+
+      <div class="intern-card reveal">
+        <div class="intern-company">MCV — Manufacturing Commercial Vehicles</div>
+        <div class="intern-role">Workshop Engineer Intern</div>
+        <div class="intern-date">August 2024 · El Obour</div>
+        <p class="intern-notes">Buses, Trucks &amp; Vans Department; Engine Overhaul Department hands-on training.</p>
       </div>
+
+      <div class="intern-card reveal">
+        <div class="intern-company">ESOTICA Service Centre</div>
+        <div class="intern-role">Workshop Engineer Intern</div>
+        <div class="intern-date">July 2024 · New Cairo</div>
+        <p class="intern-notes">Electrical fault diagnosis via wiring diagrams; servicing exotic cars including McLaren, Lamborghini, and Porsche.</p>
+      </div>
+
+      <div class="intern-card reveal">
+        <div class="intern-company">MTI Jaguar Land Rover Egypt</div>
+        <div class="intern-role">Workshop Engineer Intern</div>
+        <div class="intern-date">June 2024 · El Obour</div>
+        <p class="intern-notes">Test plan development; Pre-Delivery Inspection (PDI) procedures for Land Rover vehicles.</p>
+      </div>
+
+      <div class="intern-card reveal">
+        <div class="intern-company">Abou Ghali Automotive</div>
+        <div class="intern-role">Workshop Engineer Intern</div>
+        <div class="intern-date">September 2023 · El Obour</div>
+        <p class="intern-notes">Diesel engine disassembly and assembly; workshop management and operations.</p>
+      </div>
+
+      <div class="intern-card reveal">
+        <div class="intern-company">Elsaba Auto-Service Nissan</div>
+        <div class="intern-role">Workshop Engineer Intern</div>
+        <div class="intern-date">July 2023 · Katameya, Cairo</div>
+        <p class="intern-notes">Quick service operations; vehicle visual inspection and customer-facing workshop workflows.</p>
+      </div>
+
     </div>
   </section>
 
-  <!-- Contact -->
+  <hr class="divider" />
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-tag reveal">Capabilities</p>
+    <h2 class="section-title reveal">Skills & Tools</h2>
+    <div class="skills-layout">
+
+      <div class="reveal">
+        <div class="skill-group-title">Technical Engineering</div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">Vehicle Dynamics</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Mechanical Design</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">FEA / Simulation</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Steering Systems</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Manufacturing</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-group-title">Software</div>
+        <div class="tag-cloud">
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">CSWA Certified</span>
+          <span class="skill-tag">Matlab</span>
+          <span class="skill-tag">Optimum Kinematics</span>
+          <span class="skill-tag">IPG CarMaker</span>
+          <span class="skill-tag">AutoCAD</span>
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">PowerPoint</span>
+          <span class="skill-tag">Word</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-group-title">Leadership & Management</div>
+        <div class="tag-cloud">
+          <span class="skill-tag">Team Leadership</span>
+          <span class="skill-tag">Project Management</span>
+          <span class="skill-tag">Negotiation</span>
+          <span class="skill-tag">Sponsorship</span>
+          <span class="skill-tag">Cross-functional</span>
+          <span class="skill-tag">Multitasking</span>
+          <span class="skill-tag">Technical Documentation</span>
+          <span class="skill-tag">Budget Management</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
   <section id="contact">
     <div class="contact-inner">
-      <h2 class="contact-headline">LET'S<br><em>CONNECT</em></h2>
-      <p class="contact-sub">Open to graduate roles, motorsport programs, and engineering opportunities across the automotive industry.</p>
-      <div class="contact-links">
-        <a href="mailto:your.email@example.com" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          Email Me
-        </a>
-        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/yourusername" target="_blank" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-          GitHub
-        </a>
-        <a href="/resume.pdf" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
-          Resume / CV
-        </a>
+      <p class="section-tag reveal" style="text-align:center">Let's Work Together</p>
+      <h2 class="section-title reveal" style="text-align:center; margin-bottom: 32px;">Get In Touch</h2>
+      <a href="mailto:ibrahimreda527@gmail.com" class="contact-email reveal">ibrahimreda527@gmail.com</a>
+      <div class="contact-links reveal">
+        <a href="tel:+201550886532" class="contact-link">+20 155 088 6532</a>
+        <a href="https://linkedin.com/in/ibrahimwasfy" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="mailto:ibrahimreda527@gmail.com" class="contact-link">Send Email</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
-    <p class="footer-copy">© 2025 · Automotive Engineer Portfolio · Built with purpose</p>
-    <div class="footer-logo">AUTO.ENG</div>
+    <span class="footer-copy">© 2026 Ibrahim Reda Wasfy · Automotive Engineer · Cairo, Egypt</span>
+    <span class="footer-logo">IRW</span>
   </footer>
 
   <script>
     // Custom cursor
     const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
+    const ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-    });
-    function animateRing() {
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
       rx += (mx - rx) * 0.12;
       ry += (my - ry) * 0.12;
-      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-      requestAnimationFrame(animateRing);
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animateCursor);
     }
-    animateRing();
-    document.querySelectorAll('a, button, .project-card, .comp-card').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.style.transform += ' scale(1.8)'; ring.style.opacity = '0.8'; });
-      el.addEventListener('mouseleave', () => { ring.style.opacity = '1'; });
+    animateCursor();
+    document.querySelectorAll('a, button, .exp-item, .project-card, .ach-card, .intern-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '20px'; cursor.style.height = '20px';
+        ring.style.width = '52px'; ring.style.height = '52px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '12px'; cursor.style.height = '12px';
+        ring.style.width = '36px'; ring.style.height = '36px';
+      });
     });
 
-    // Intersection observer for scroll animations
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          setTimeout(() => entry.target.classList.add('visible'), 60);
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.timeline-item, .project-card, .comp-card').forEach(el => observer.observe(el));
-
-    // Stagger project cards
-    document.querySelectorAll('.project-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 0.08}s`;
+    // Stagger siblings
+    document.querySelectorAll('.exp-list, .projects-grid, .ach-grid, .intern-grid').forEach(parent => {
+      const children = parent.querySelectorAll('.reveal');
+      children.forEach((child, i) => {
+        child.style.transitionDelay = (i * 0.08) + 's';
+      });
     });
-    document.querySelectorAll('.comp-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 0.1}s`;
+
+    // Nav active state
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+      });
     });
   </script>
 </body>
