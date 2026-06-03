@@ -1,781 +1,1161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aurora a Freefolio template by OSSPH</title>
-    <meta name="description" content="A modern dark portfolio template inspired by the Northern Lights with comprehensive sections and smooth animations">
-    <meta property="og:title" content="Aurora Portfolio Template">
-    <meta property="og:description" content="A Northern Lights inspired portfolio template with dark mode aesthetic">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Automotive Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    :root {
+      --black: #0a0a0a;
+      --carbon: #111214;
+      --steel: #1c1f24;
+      --chrome: #2e3138;
+      --muted: #4a4f5a;
+      --silver: #8a9099;
+      --light: #c8cdd6;
+      --white: #eef0f4;
+      --accent: #c8922a;
+      --accent-dim: #8a621c;
+      --red: #c0392b;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-mono: 'DM Mono', monospace;
+    }
 
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    html { scroll-behavior: smooth; }
 
-    <!-- Custom Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'aurora-green': '#00ffaa',
-                        'aurora-blue': '#00aaff',
-                        'aurora-purple': '#aa00ff',
-                        'aurora-pink': '#ff00aa',
-                        'dark-bg': '#0a0e1a',
-                        'dark-card': '#1a1f2e',
-                        'dark-border': '#2a2f3e'
-                    },
-                    animation: {
-                        'aurora': 'aurora 15s ease-in-out infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'glow': 'glow 2s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        aurora: {
-                            '0%, 100%': {
-                                backgroundPosition: '0% 50%',
-                                backgroundSize: '200% 200%'
-                            },
-                            '50%': {
-                                backgroundPosition: '100% 50%',
-                                backgroundSize: '200% 200%'
-                            }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' }
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
-                        },
-                        glow: {
-                            '0%, 100%': {
-                                boxShadow: '0 0 5px rgba(0, 255, 170, 0.5), 0 0 20px rgba(0, 255, 170, 0.3)'
-                            },
-                            '50%': {
-                                boxShadow: '0 0 20px rgba(0, 170, 255, 0.8), 0 0 40px rgba(0, 170, 255, 0.4)'
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    body {
+      background: var(--black);
+      color: var(--light);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-    <style>
-        /* Aurora gradient background */
-        .aurora-bg {
-            background: linear-gradient(-45deg, #0a0e1a, #1a0033, #002244, #001a33);
-            background-size: 400% 400%;
-            animation: aurora 15s ease infinite;
-        }
+    /* Custom cursor */
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(200,146,42,0.4);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.35s cubic-bezier(.23,1,.32,1), opacity 0.3s ease;
+      transform: translate(-50%, -50%);
+    }
+    body:hover .cursor { opacity: 1; }
 
-        /* Aurora light effect overlay */
-        .aurora-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100vh;
-            background:
-                radial-gradient(ellipse at top left, rgba(0, 255, 170, 0.15) 0%, transparent 40%),
-                radial-gradient(ellipse at top right, rgba(0, 170, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(ellipse at bottom left, rgba(170, 0, 255, 0.1) 0%, transparent 40%),
-                radial-gradient(ellipse at bottom right, rgba(255, 0, 170, 0.1) 0%, transparent 40%);
-            pointer-events: none;
-            opacity: 0.7;
-        }
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.3;
+    }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(2px);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 64px 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 9vw, 9rem);
+      line-height: 0.92;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--accent);
+      display: block;
+    }
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--silver);
+      margin-top: 28px;
+      max-width: 380px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.7s forwards;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      margin-top: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.9s forwards;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: var(--black);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 400;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #e0a835; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block;
+      padding: 13px 35px;
+      border: 1px solid var(--chrome);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-        ::-webkit-scrollbar-track {
-            background: #0a0e1a;
-        }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Animated engineering blueprint grid */
+    .blueprint-grid {
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(200,146,42,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,146,42,0.06) 1px, transparent 1px),
+        linear-gradient(rgba(200,146,42,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,146,42,0.03) 1px, transparent 1px);
+      background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+      animation: gridShift 20s linear infinite;
+    }
+    @keyframes gridShift {
+      from { background-position: 0 0, 0 0, 0 0, 0 0; }
+      to   { background-position: 80px 80px, 80px 80px, 16px 16px, 16px 16px; }
+    }
+    .hero-svg-car {
+      position: absolute;
+      width: 90%;
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeIn 1.2s 1s forwards;
+    }
+    .hero-stats {
+      position: absolute;
+      bottom: 80px;
+      left: 64px;
+      display: flex;
+      gap: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.1s forwards;
+    }
+    .stat { text-align: left; }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-number span { color: var(--accent); }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .hero-line {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      opacity: 0.4;
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #00ffaa, #00aaff);
-            border-radius: 5px;
-        }
+    /* ── SECTIONS BASE ── */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--white);
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--chrome), transparent);
+    }
 
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #00ffaa 0%, #00aaff 50%, #aa00ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* ── ABOUT ── */
+    #about {
+      padding: 120px 0;
+      background: var(--carbon);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-portrait {
+      position: relative;
+    }
+    .portrait-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--steel);
+      position: relative;
+      overflow: hidden;
+    }
+    .portrait-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
+      opacity: 0.3;
+    }
+    .portrait-initials {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 7rem;
+      color: var(--chrome);
+      letter-spacing: 0.1em;
+    }
+    .portrait-accent-border {
+      position: absolute;
+      bottom: -12px; right: -12px;
+      width: 60%; height: 60%;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+    }
+    .portrait-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 24px;
+      padding-left: 2px;
+    }
+    .about-text h3 {
+      font-family: var(--font-body);
+      font-size: 1.9rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 24px;
+      line-height: 1.35;
+    }
+    .about-text p {
+      color: var(--silver);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .about-text p strong { color: var(--light); font-weight: 600; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--steel);
+      border-left: 2px solid var(--chrome);
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .skill-item:hover { border-color: var(--accent); background: var(--chrome); }
+    .skill-item .dot {
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .skill-item span {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--silver);
+      text-transform: uppercase;
+    }
 
-        /* Card hover effect */
-        .card-hover {
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
+    /* ── EXPERIENCE ── */
+    #experience {
+      padding: 120px 0;
+      background: var(--black);
+    }
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--chrome), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-dot {
+      position: absolute;
+      left: -45px; top: 8px;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 16px rgba(200,146,42,0.5);
+    }
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .timeline-org {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--silver);
+      margin-bottom: 16px;
+    }
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .tag {
+      padding: 4px 12px;
+      border: 1px solid var(--chrome);
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
 
-        .card-hover:hover {
-            border-color: #00ffaa;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.2);
-        }
+    /* ── PROJECTS ── */
+    #projects {
+      padding: 120px 0;
+      background: var(--carbon);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .project-card {
+      background: var(--steel);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s, transform 0.6s, background 0.3s;
+    }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover { background: var(--chrome); }
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    .project-card:hover::after { transform: scaleX(1); }
+    .project-num {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--chrome);
+      position: absolute;
+      top: 16px; right: 24px;
+      line-height: 1;
+      transition: color 0.3s;
+    }
+    .project-card:hover .project-num { color: rgba(200,146,42,0.12); }
+    .project-icon {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .project-accent {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
 
-        /* Progress bar animation */
-        @keyframes progressAnimation {
-            0% { width: 0%; }
-        }
+    /* ── COMPETENCIES ── */
+    #competencies {
+      padding: 120px 0;
+      background: var(--black);
+    }
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .comp-card {
+      padding: 48px;
+      background: var(--carbon);
+      border-top: 1px solid var(--steel);
+      transition: background 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s, background 0.3s;
+    }
+    .comp-card.visible { opacity: 1; transform: translateY(0); }
+    .comp-card:hover { background: var(--steel); }
+    .comp-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .comp-icon-wrap {
+      width: 44px; height: 44px;
+      background: rgba(200,146,42,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .comp-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .comp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .comp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .comp-list li::before {
+      content: '—';
+      color: var(--accent-dim);
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+    }
 
-        .progress-bar {
-            animation: progressAnimation 2s ease-out forwards;
-        }
-    </style>
+    /* ── CONTACT ── */
+    #contact {
+      padding: 140px 0 100px;
+      background: var(--carbon);
+    }
+    .contact-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      color: var(--white);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      margin-bottom: 32px;
+    }
+    .contact-headline em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .contact-sub {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--silver);
+      margin-bottom: 56px;
+      font-weight: 300;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border: 1px solid var(--chrome);
+      color: var(--silver);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+    .contact-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--steel);
+    }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--chrome);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.4s forwards;
+    }
+    .scroll-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; height: 40px; }
+      50% { opacity: 1; height: 56px; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 24px 60px; }
+      .hero-right { display: none; }
+      .hero-stats { position: static; display: flex; gap: 32px; margin-top: 48px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .comp-grid { grid-template-columns: 1fr; }
+      .section-inner { padding: 0 24px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
 </head>
-<body class="bg-dark-bg text-gray-200 aurora-bg">
-    <!-- Aurora overlay effect -->
-    <div class="aurora-overlay"></div>
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-md border-b border-dark-border z-50">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold gradient-text">Aurora</div>
-                <ul class="hidden md:flex space-x-8">
-                    <li><a href="#home" class="hover:text-aurora-green transition">Home</a></li>
-                    <li><a href="#about" class="hover:text-aurora-green transition">About</a></li>
-                    <li><a href="#experience" class="hover:text-aurora-green transition">Experience</a></li>
-                    <li><a href="#skills" class="hover:text-aurora-green transition">Skills</a></li>                
-                    <li><a href="#portfolio" class="hover:text-aurora-green transition">Portfolio</a></li>
-                    <li><a href="#testimonials" class="hover:text-aurora-green transition">Testimonials</a></li>
-                    <li><a href="#contact" class="hover:text-aurora-green transition">Contact</a></li>
-                </ul>
-                <!-- Mobile menu button -->
-                <button class="md:hidden" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            <!-- Mobile menu -->
-            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
-                <a href="#home" class="block py-2 hover:text-aurora-green">Home</a>
-                <a href="#about" class="block py-2 hover:text-aurora-green">About</a>
-                <a href="#experience" class="block py-2 hover:text-aurora-green">Experience</a>
-                <a href="#skills" class="block py-2 hover:text-aurora-green">Skills</a>
-                <a href="#services" class="block py-2 hover:text-aurora-green">Services</a>
-                <a href="#portfolio" class="block py-2 hover:text-aurora-green">Portfolio</a>
-                <a href="#testimonials" class="block py-2 hover:text-aurora-green">Testimonials</a>
-                <a href="#blog" class="block py-2 hover:text-aurora-green">Blog</a>
-                <a href="#contact" class="block py-2 hover:text-aurora-green">Contact</a>
-            </div>
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">AUTO<span>.</span>ENG</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#competencies">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Automotive Engineer · Motorsport · Manufacturing</p>
+      <h1 class="hero-name">
+        YOUR<br>
+        <em>NAME</em>
+      </h1>
+      <p class="hero-tagline">
+        Where precision engineering meets competitive motorsport. Designing, building, and leading — from Formula Student circuits to Shell Eco-Marathon runs.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">2<span>×</span></div>
+          <div class="stat-label">Competitions</div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative">
-        <div class="container mx-auto px-6 text-center z-10">
-            <div class="animate-slide-up">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4">
-                    Hello, I'm <span class="gradient-text">Ibrahim Wasfy</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-400 mb-8">Automotive Engineering Student | Formula Student Engineer | Vehicle Dynamics </p>
-                <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-12">
-                    Crafting digital experiences that illuminate the web like the Northern Lights.
-                    Passionate about cutting-edge technology and beautiful, functional design.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#portfolio" class="px-8 py-3 bg-gradient-to-r from-aurora-green to-aurora-blue rounded-full text-dark-bg font-semibold hover:shadow-lg hover:shadow-aurora-green/50 transition transform hover:scale-105">
-                        View My Work
-                    </a>
-                    <a href="resume.pdf" class="px-8 py-3 border-2 border-aurora-green rounded-full hover:bg-aurora-green hover:text-dark-bg transition transform hover:scale-105">
-                        Download CV
-                    </a>
-                </div>
-                <div class="mt-12 flex justify-center space-x-6">
-                    <a href="#" class="text-2xl hover:text-aurora-green transition"><i class="fab fa-github"></i></a>
-                    <a href="#" class="text-2xl hover:text-aurora-blue transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="text-2xl hover:text-aurora-purple transition"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-2xl hover:text-aurora-pink transition"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+        <div class="stat">
+          <div class="stat-number">1<span>+</span></div>
+          <div class="stat-label">Teams Led</div>
         </div>
-        <!-- Animated particles -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute w-2 h-2 bg-aurora-green rounded-full animate-float" style="top: 20%; left: 10%;"></div>
-            <div class="absolute w-2 h-2 bg-aurora-blue rounded-full animate-float" style="top: 60%; left: 80%; animation-delay: 1s;"></div>
-            <div class="absolute w-2 h-2 bg-aurora-purple rounded-full animate-float" style="top: 40%; left: 60%; animation-delay: 2s;"></div>
-            <div class="absolute w-2 h-2 bg-aurora-pink rounded-full animate-float" style="top: 80%; left: 30%; animation-delay: 3s;"></div>
+        <div class="stat">
+          <div class="stat-number">FS<span>&</span>SEM</div>
+          <div class="stat-label">Programs</div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-gray-400 leading-relaxed">
-                        With over 7 years of experience in web development and design, I specialize in creating
-                        immersive digital experiences that captivate users and drive business growth.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        My journey began with a fascination for the intersection of art and technology. Today,
-                        I work with cutting-edge technologies to build scalable, performant applications that
-                        push the boundaries of what's possible on the web.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 pt-4">
-                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
-                            <div class="text-3xl font-bold text-aurora-green">100+</div>
-                            <div class="text-sm text-gray-400">Projects Completed</div>
-                        </div>
-                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
-                            <div class="text-3xl font-bold text-aurora-blue">50+</div>
-                            <div class="text-sm text-gray-400">Happy Clients</div>
-                        </div>
-                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
-                            <div class="text-3xl font-bold text-aurora-purple">7+</div>
-                            <div class="text-sm text-gray-400">Years Experience</div>
-                        </div>
-                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
-                            <div class="text-3xl font-bold text-aurora-pink">15+</div>
-                            <div class="text-sm text-gray-400">Awards Won</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-aurora-green via-aurora-blue to-aurora-purple p-1">
-                        <div class="w-full h-full rounded-full bg-dark-bg flex items-center justify-center">
-                            <span class="text-6xl">👨‍💻</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="blueprint-grid"></div>
+        <!-- Formula car SVG illustration -->
+        <svg class="hero-svg-car" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Ground shadow -->
+          <ellipse cx="300" cy="200" rx="240" ry="10" fill="rgba(0,0,0,0.5)"/>
+          <!-- Rear wing -->
+          <rect x="65" y="70" width="80" height="6" rx="2" fill="#c8922a" filter="url(#glow)"/>
+          <rect x="75" y="76" width="4" height="28" fill="#8a621c"/>
+          <rect x="121" y="76" width="4" height="28" fill="#8a621c"/>
+          <!-- Main body -->
+          <path d="M120 155 Q100 145 80 148 L68 160 Q64 170 80 172 L520 172 Q536 170 532 160 L520 148 Q500 145 480 155 Z" fill="#1c1f24" stroke="#2e3138" stroke-width="1"/>
+          <!-- Cockpit surround -->
+          <path d="M220 155 Q230 110 270 100 L330 100 Q370 110 380 155 Z" fill="#111214" stroke="#c8922a" stroke-width="1.5" filter="url(#glow)"/>
+          <!-- Sidepods -->
+          <path d="M170 148 Q175 130 200 128 L240 128 L240 155 Z" fill="#1c1f24" stroke="#2e3138" stroke-width="1"/>
+          <path d="M430 148 Q425 130 400 128 L360 128 L360 155 Z" fill="#1c1f24" stroke="#2e3138" stroke-width="1"/>
+          <!-- Nose cone -->
+          <path d="M480 155 L520 152 L560 158 L560 165 L520 168 L480 165 Z" fill="#1c1f24" stroke="#c8922a" stroke-width="1"/>
+          <!-- Front wing -->
+          <rect x="520" y="163" width="60" height="5" rx="1" fill="#c8922a" filter="url(#glow)"/>
+          <rect x="524" y="150" width="3" height="13" fill="#8a621c"/>
+          <rect x="573" y="150" width="3" height="13" fill="#8a621c"/>
+          <!-- Wheels rear -->
+          <circle cx="110" cy="172" r="26" fill="#0a0a0a" stroke="#2e3138" stroke-width="2"/>
+          <circle cx="110" cy="172" r="16" fill="#111214"/>
+          <circle cx="110" cy="172" r="5" fill="#c8922a"/>
+          <!-- Wheels front -->
+          <circle cx="490" cy="172" r="26" fill="#0a0a0a" stroke="#2e3138" stroke-width="2"/>
+          <circle cx="490" cy="172" r="16" fill="#111214"/>
+          <circle cx="490" cy="172" r="5" fill="#c8922a"/>
+          <!-- Cockpit opening -->
+          <ellipse cx="300" cy="120" rx="40" ry="16" fill="#0a0a0a" stroke="#c8922a" stroke-width="1"/>
+          <!-- Halo -->
+          <path d="M262 118 Q300 108 338 118" fill="none" stroke="#c8922a" stroke-width="3" filter="url(#glow)"/>
+          <!-- Accent lines -->
+          <line x1="200" y1="155" x2="400" y2="155" stroke="#c8922a" stroke-width="1" opacity="0.4"/>
+          <!-- Number plate -->
+          <rect x="268" y="130" width="64" height="20" rx="2" fill="#c8922a" opacity="0.15" stroke="#c8922a" stroke-width="0.5"/>
+          <text x="300" y="145" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#c8922a" opacity="0.8">FS · 01</text>
+        </svg>
+      </div>
+      <div class="hero-line"></div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-label">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-header" style="padding-top:120px;">
+        <span class="section-num">01</span>
+        <h2 class="section-title">ABOUT</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-portrait">
+          <div class="portrait-frame">
+            <div class="portrait-initials">YN</div>
+          </div>
+          <div class="portrait-accent-border"></div>
+          <p class="portrait-label">Automotive Engineer</p>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-dark-card/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Work Experience</h2>
-            <div class="max-w-4xl mx-auto space-y-8">
-                <div class="relative pl-8 border-l-2 border-aurora-green">
-                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-green rounded-full"></div>
-                    <div class="bg-dark-card p-6 rounded-lg card-hover">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-aurora-green">Senior Full-Stack Developer</h3>
-                            <span class="text-sm text-gray-400">2021 - Present</span>
-                        </div>
-                        <p class="text-gray-300 font-medium mb-2">Tech Innovations Inc.</p>
-                        <p class="text-gray-400">
-                            Lead development of enterprise-scale web applications, mentor junior developers,
-                            and architect cloud-native solutions using modern tech stacks.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative pl-8 border-l-2 border-aurora-blue">
-                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-blue rounded-full"></div>
-                    <div class="bg-dark-card p-6 rounded-lg card-hover">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-aurora-blue">Full-Stack Developer</h3>
-                            <span class="text-sm text-gray-400">2019 - 2021</span>
-                        </div>
-                        <p class="text-gray-300 font-medium mb-2">Digital Solutions Agency</p>
-                        <p class="text-gray-400">
-                            Developed custom web applications for various clients, implemented responsive designs,
-                            and optimized application performance.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative pl-8 border-l-2 border-aurora-purple">
-                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-purple rounded-full"></div>
-                    <div class="bg-dark-card p-6 rounded-lg card-hover">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-aurora-purple">Frontend Developer</h3>
-                            <span class="text-sm text-gray-400">2017 - 2019</span>
-                        </div>
-                        <p class="text-gray-300 font-medium mb-2">Creative Web Studio</p>
-                        <p class="text-gray-400">
-                            Created interactive user interfaces, implemented design mockups, and ensured
-                            cross-browser compatibility for client projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div class="about-text">
+          <h3>"Engineering is not just what I study — it's how I think, build, and lead."</h3>
+          <p>
+            I am an automotive engineer with a passion that extends well beyond the classroom. From competing in <strong>Shell Eco-Marathon</strong> to building and leading a <strong>Formula Student</strong> race car team, I have experienced firsthand the intensity of designing and manufacturing a vehicle under real competition pressure.
+          </p>
+          <p>
+            As team leader of a Formula Student program, I bridged the technical and managerial worlds — coordinating multidisciplinary sub-teams, managing timelines, and making critical engineering decisions under constraints. On the technical side, I contributed hands-on to <strong>chassis fabrication, suspension setup, powertrain integration,</strong> and vehicle dynamics tuning.
+          </p>
+          <p>
+            Beyond motorsport, my internship experience in <strong>automotive after-sales departments</strong> gave me a deep appreciation for workshop operations, diagnostics, customer service workflows, and the lifecycle of vehicles in the real market.
+          </p>
+          <div class="skills-grid">
+            <div class="skill-item"><div class="dot"></div><span>Vehicle Dynamics</span></div>
+            <div class="skill-item"><div class="dot"></div><span>Chassis Design</span></div>
+            <div class="skill-item"><div class="dot"></div><span>Team Leadership</span></div>
+            <div class="skill-item"><div class="dot"></div><span>Manufacturing</span></div>
+            <div class="skill-item"><div class="dot"></div><span>Powertrain Systems</span></div>
+            <div class="skill-item"><div class="dot"></div><span>After-Sales Ops</span></div>
+            <div class="skill-item"><div class="dot"></div><span>SolidWorks / CAD</span></div>
+            <div class="skill-item"><div class="dot"></div><span>Technical Reporting</span></div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Technical Skills</h2>
-            <div class="max-w-4xl mx-auto space-y-8">
-                <!-- Frontend Skills -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 text-aurora-green">Frontend Development</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>React / Next.js</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full bg-dark-card rounded-full h-2">
-                                <div class="bg-gradient-to-r from-aurora-green to-aurora-blue h-2 rounded-full progress-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>TypeScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full bg-dark-card rounded-full h-2">
-                                <div class="bg-gradient-to-r from-aurora-blue to-aurora-purple h-2 rounded-full progress-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Tailwind CSS</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full bg-dark-card rounded-full h-2">
-                                <div class="bg-gradient-to-r from-aurora-purple to-aurora-pink h-2 rounded-full progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Backend Skills -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 text-aurora-blue">Backend Development</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Node.js / Express</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full bg-dark-card rounded-full h-2">
-                                <div class="bg-gradient-to-r from-aurora-green to-aurora-blue h-2 rounded-full progress-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Python / Django</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full bg-dark-card rounded-full h-2">
-                                <div class="bg-gradient-to-r from-aurora-blue to-aurora-purple h-2 rounded-full progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>PostgreSQL / MongoDB</span>
-                                <span>88%</span>
-                            </div>
-                            <div class="w-full bg-dark-card rounded-full h-2">
-                                <div class="bg-gradient-to-r from-aurora-purple to-aurora-pink h-2 rounded-full progress-bar" style="width: 88%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools & Others -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 text-aurora-purple">Tools & DevOps</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-dark-card p-4 rounded-lg text-center card-hover">
-                            <i class="fab fa-docker text-2xl mb-2 text-aurora-green"></i>
-                            <p>Docker</p>
-                        </div>
-                        <div class="bg-dark-card p-4 rounded-lg text-center card-hover">
-                            <i class="fab fa-aws text-2xl mb-2 text-aurora-blue"></i>
-                            <p>AWS</p>
-                        </div>
-                        <div class="bg-dark-card p-4 rounded-lg text-center card-hover">
-                            <i class="fab fa-git text-2xl mb-2 text-aurora-purple"></i>
-                            <p>Git</p>
-                        </div>
-                        <div class="bg-dark-card p-4 rounded-lg text-center card-hover">
-                            <i class="fas fa-infinity text-2xl mb-2 text-aurora-pink"></i>
-                            <p>CI/CD</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- Experience -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-header" style="padding-top:120px;">
+        <span class="section-num">02</span>
+        <h2 class="section-title">EXPERIENCE</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">20XX — Present</div>
+          <div class="timeline-role">TEAM CAPTAIN</div>
+          <div class="timeline-org">Formula Student Team — [University Name]</div>
+          <div class="timeline-desc">Led a multidisciplinary engineering team of 20+ members through the full design, manufacturing, and competition cycle of a formula-style race car. Managed sub-teams across chassis, powertrain, suspension, electronics, and aerodynamics. Represented the team in technical inspections and business presentations at the international competition.</div>
+          <div class="timeline-tags">
+            <span class="tag">Team Management</span>
+            <span class="tag">Technical Direction</span>
+            <span class="tag">Budget Planning</span>
+            <span class="tag">Stakeholder Relations</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-dark-card/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Services</h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-                <div class="bg-dark-card p-6 rounded-lg card-hover text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-2xl text-dark-bg"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Web Development</h3>
-                    <p class="text-gray-400">
-                        Custom web applications built with modern frameworks and best practices for optimal performance.
-                    </p>
-                </div>
-
-                <div class="bg-dark-card p-6 rounded-lg card-hover text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
-                        <i class="fas fa-mobile-alt text-2xl text-dark-bg"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Mobile Development</h3>
-                    <p class="text-gray-400">
-                        Native and cross-platform mobile applications that deliver seamless user experiences.
-                    </p>
-                </div>
-
-                <div class="bg-dark-card p-6 rounded-lg card-hover text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
-                        <i class="fas fa-palette text-2xl text-dark-bg"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">UI/UX Design</h3>
-                    <p class="text-gray-400">
-                        Beautiful, intuitive interfaces designed with user experience at the forefront.
-                    </p>
-                </div>
-
-                <div class="bg-dark-card p-6 rounded-lg card-hover text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-aurora-pink to-aurora-green flex items-center justify-center">
-                        <i class="fas fa-cloud text-2xl text-dark-bg"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Cloud Solutions</h3>
-                    <p class="text-gray-400">
-                        Scalable cloud architecture and deployment strategies for modern applications.
-                    </p>
-                </div>
-
-                <div class="bg-dark-card p-6 rounded-lg card-hover text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-aurora-green to-aurora-purple flex items-center justify-center">
-                        <i class="fas fa-chart-line text-2xl text-dark-bg"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Consulting</h3>
-                    <p class="text-gray-400">
-                        Technical consulting and strategic planning for digital transformation initiatives.
-                    </p>
-                </div>
-
-                <div class="bg-dark-card p-6 rounded-lg card-hover text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-pink flex items-center justify-center">
-                        <i class="fas fa-cogs text-2xl text-dark-bg"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">API Integration</h3>
-                    <p class="text-gray-400">
-                        Seamless third-party API integrations and custom API development.
-                    </p>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">20XX</div>
+          <div class="timeline-role">CHASSIS & SUSPENSION ENGINEER</div>
+          <div class="timeline-org">Formula Student Team — [University Name]</div>
+          <div class="timeline-desc">Designed and fabricated steel space-frame chassis components, performed FEA analysis on critical structural members, and executed suspension geometry calculations. Conducted hands-on welding, fabrication, and assembly of the race car from raw materials to a competition-ready vehicle.</div>
+          <div class="timeline-tags">
+            <span class="tag">FEA Analysis</span>
+            <span class="tag">SolidWorks</span>
+            <span class="tag">Fabrication</span>
+            <span class="tag">Suspension Design</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Portfolio</h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-                <div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
-                        <i class="fas fa-shopping-cart text-6xl text-dark-bg"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">E-Commerce Platform</h3>
-                        <p class="text-gray-400 mb-4">Full-stack e-commerce solution with payment integration</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">React</span>
-                            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Node.js</span>
-                            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">MongoDB</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
-                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
-                        <i class="fas fa-users text-6xl text-dark-bg"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Social Media Dashboard</h3>
-                        <p class="text-gray-400 mb-4">Analytics dashboard for social media management</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Vue.js</span>
-                            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Python</span>
-                            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">PostgreSQL</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
-                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-dark-card rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
-                        <i class="fas fa-gamepad text-6xl text-dark-bg"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Gaming Platform</h3>
-                        <p class="text-gray-400 mb-4">Real-time multiplayer gaming platform</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-aurora-green/20 text-aurora-green rounded text-xs">Next.js</span>
-                            <span class="px-2 py-1 bg-aurora-blue/20 text-aurora-blue rounded text-xs">Socket.io</span>
-                            <span class="px-2 py-1 bg-aurora-purple/20 text-aurora-purple rounded text-xs">Redis</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
-                            <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">20XX</div>
+          <div class="timeline-role">ENGINEERING COMPETITOR</div>
+          <div class="timeline-org">Shell Eco-Marathon — [Location]</div>
+          <div class="timeline-desc">Participated in the Shell Eco-Marathon, designing and optimizing a fuel-efficient prototype vehicle. Focused on minimizing aerodynamic drag and drivetrain losses to achieve maximum fuel economy. Contributed to the design of the body shell and the energy management strategy during the event.</div>
+          <div class="timeline-tags">
+            <span class="tag">Fuel Efficiency</span>
+            <span class="tag">Aerodynamics</span>
+            <span class="tag">Prototype Build</span>
+            <span class="tag">Energy Management</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-dark-card/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Client Testimonials</h2>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                <div class="bg-dark-card p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center text-xl font-bold text-dark-bg">
-                            JD
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="font-semibold">John Doe</h4>
-                            <p class="text-sm text-gray-400">CEO, TechStart</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 italic">
-                        "Ibrahim delivered an exceptional product that exceeded our expectations. Their technical expertise
-                        and attention to detail made our project a huge success."
-                    </p>
-                    <div class="mt-4 text-aurora-green">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-
-                <div class="bg-dark-card p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center text-xl font-bold text-dark-bg">
-                            SM
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="font-semibold">Sarah Miller</h4>
-                            <p class="text-sm text-gray-400">Product Manager, InnovateCo</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 italic">
-                        "Working with Ibrahim was a fantastic experience. They brought our vision to life with
-                        creativity and technical excellence."
-                    </p>
-                    <div class="mt-4 text-aurora-blue">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">20XX</div>
+          <div class="timeline-role">AFTER-SALES INTERN</div>
+          <div class="timeline-org">[Automotive Dealership / Workshop Name]</div>
+          <div class="timeline-desc">Worked within the service and after-sales department of an automotive workshop. Gained practical exposure to vehicle diagnostics, warranty claim processing, customer interactions, and workshop scheduling. Observed and assisted with maintenance and repair procedures across a range of vehicle platforms.</div>
+          <div class="timeline-tags">
+            <span class="tag">Vehicle Diagnostics</span>
+            <span class="tag">Workshop Operations</span>
+            <span class="tag">Customer Service</span>
+            <span class="tag">Technical Documentation</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Latest Blog Posts</h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-                <article class="bg-dark-card rounded-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-aurora-green to-aurora-blue"></div>
-                    <div class="p-6">
-                        <div class="text-sm text-gray-400 mb-2">March 15, 2024</div>
-                        <h3 class="text-xl font-semibold mb-3">The Future of Web Development</h3>
-                        <p class="text-gray-400 mb-4">
-                            Exploring emerging trends and technologies shaping the future of web development...
-                        </p>
-                        <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-header" style="padding-top:120px;">
+        <span class="section-num">03</span>
+        <h2 class="section-title">PROJECTS</h2>
+        <div class="section-rule"></div>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <span class="project-icon">🏎</span>
+        <div class="project-title">FORMULA STUDENT RACE CAR</div>
+        <div class="project-desc">End-to-end design and manufacture of a single-seat formula race car, from concept to competition. Responsible for overall systems integration and structural integrity sign-off.</div>
+        <span class="project-accent">→ Competition Vehicle</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <span class="project-icon">⚙️</span>
+        <div class="project-title">SUSPENSION GEOMETRY OPTIMIZATION</div>
+        <div class="project-desc">Developed a parametric model for double-wishbone suspension kinematics, optimizing camber gain, roll center migration, and anti-dive/squat characteristics for track performance.</div>
+        <span class="project-accent">→ Vehicle Dynamics</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <span class="project-icon">🌿</span>
+        <div class="project-title">SHELL ECO-MARATHON PROTOTYPE</div>
+        <div class="project-desc">Ultra-lightweight fuel economy prototype targeting maximum energy efficiency. Designed aerodynamic body shell using CFD principles and developed a low-rolling-resistance drivetrain solution.</div>
+        <span class="project-accent">→ Efficiency Engineering</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <span class="project-icon">🏗️</span>
+        <div class="project-title">SPACE-FRAME CHASSIS DESIGN</div>
+        <div class="project-desc">Designed and validated a 4130 chromoly steel space-frame chassis using SolidWorks and ANSYS FEA. Balanced stiffness targets with minimum weight in line with Formula SAE regulations.</div>
+        <span class="project-accent">→ Structural Engineering</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">05</div>
+        <span class="project-icon">🔧</span>
+        <div class="project-title">WORKSHOP EFFICIENCY STUDY</div>
+        <div class="project-desc">During after-sales internship, analyzed service bay workflow and technician throughput data to identify bottlenecks in the repair order lifecycle — proposals led to reduced average turnaround time.</div>
+        <span class="project-accent">→ Process Improvement</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">06</div>
+        <span class="project-icon">📐</span>
+        <div class="project-title">POWERTRAIN INTEGRATION</div>
+        <div class="project-desc">Engineered mounting solutions and drivetrain routing for engine installation in a Formula Student car, including exhaust packaging, cooling layout, and fuel system integration within tight dimensional constraints.</div>
+        <span class="project-accent">→ Powertrain Systems</span>
+      </div>
+    </div>
+  </section>
 
-                <article class="bg-dark-card rounded-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-aurora-blue to-aurora-purple"></div>
-                    <div class="p-6">
-                        <div class="text-sm text-gray-400 mb-2">March 10, 2024</div>
-                        <h3 class="text-xl font-semibold mb-3">Building Scalable Applications</h3>
-                        <p class="text-gray-400 mb-4">
-                            Best practices for building applications that scale efficiently with growing demand...
-                        </p>
-                        <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="bg-dark-card rounded-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-aurora-purple to-aurora-pink"></div>
-                    <div class="p-6">
-                        <div class="text-sm text-gray-400 mb-2">March 5, 2024</div>
-                        <h3 class="text-xl font-semibold mb-3">UI/UX Design Principles</h3>
-                        <p class="text-gray-400 mb-4">
-                            Essential design principles for creating user-friendly and aesthetic interfaces...
-                        </p>
-                        <a href="#" class="text-aurora-green hover:text-aurora-blue transition">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-            </div>
+  <!-- Competencies -->
+  <section id="competencies">
+    <div class="section-inner">
+      <div class="section-header" style="padding-top:120px;">
+        <span class="section-num">04</span>
+        <h2 class="section-title">COMPETENCIES</h2>
+        <div class="section-rule"></div>
+      </div>
+    </div>
+    <div class="section-inner">
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <div class="comp-icon-wrap">⚙️</div>
+            <div class="comp-card-title">TECHNICAL ENGINEERING</div>
+          </div>
+          <ul class="comp-list">
+            <li>Vehicle dynamics analysis and suspension kinematics</li>
+            <li>Structural design and FEA simulation (ANSYS, SolidWorks)</li>
+            <li>Engine systems and powertrain integration</li>
+            <li>Aerodynamics and CFD fundamentals</li>
+            <li>Manufacturing processes: welding, CNC, composites</li>
+            <li>Technical documentation and engineering reports</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-dark-card/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
-                                <i class="fas fa-envelope text-dark-bg"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">Email</p>
-                                <p>Ibrahimrwasfy@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
-                                <i class="fas fa-phone text-dark-bg"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">Phone</p>
-                                <p>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-dark-bg"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">Location</p>
-                                <p>San Francisco, CA</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="space-y-4">
-                        <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green">
-                        <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green">
-                        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green"></textarea>
-                        <button type="submit" class="w-full px-8 py-3 bg-gradient-to-r from-aurora-green to-aurora-blue rounded-lg text-dark-bg font-semibold hover:shadow-lg hover:shadow-aurora-green/50 transition transform hover:scale-105">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <div class="comp-icon-wrap">👥</div>
+            <div class="comp-card-title">LEADERSHIP & MANAGEMENT</div>
+          </div>
+          <ul class="comp-list">
+            <li>Leading multidisciplinary engineering teams</li>
+            <li>Project scheduling, milestones, and risk management</li>
+            <li>Budget management and supplier negotiation</li>
+            <li>Sponsorship acquisition and stakeholder presentations</li>
+            <li>Technical event coordination and competition logistics</li>
+            <li>Mentoring and knowledge transfer across team levels</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 border-t border-dark-border">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mb-4">
-                <a href="#" class="text-2xl mx-2 hover:text-aurora-green transition"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-2xl mx-2 hover:text-aurora-blue transition"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-2xl mx-2 hover:text-aurora-purple transition"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-2xl mx-2 hover:text-aurora-pink transition"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p class="text-gray-400">
-                © 2026 Ibrahim Reda.
-                </a>
-            </p>
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <div class="comp-icon-wrap">🏭</div>
+            <div class="comp-card-title">MANUFACTURING & HANDS-ON</div>
+          </div>
+          <ul class="comp-list">
+            <li>Hands-on fabrication: cutting, welding, assembly</li>
+            <li>Prototype construction and iteration cycles</li>
+            <li>Workshop safety and quality control procedures</li>
+            <li>Tooling, jigs, and fixture design</li>
+            <li>Vehicle assembly and system commissioning</li>
+            <li>Track testing, data logging, and setup adjustments</li>
+          </ul>
         </div>
-    </footer>
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <div class="comp-icon-wrap">🔩</div>
+            <div class="comp-card-title">AFTER-SALES & SERVICE</div>
+          </div>
+          <ul class="comp-list">
+            <li>Vehicle diagnostics and fault identification</li>
+            <li>Warranty and service order management</li>
+            <li>Customer-facing technical communication</li>
+            <li>Workshop scheduling and bay utilisation</li>
+            <li>OEM technical manuals and service bulletins</li>
+            <li>Aftersales process mapping and improvement</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-inner">
+      <h2 class="contact-headline">LET'S<br><em>CONNECT</em></h2>
+      <p class="contact-sub">Open to graduate roles, motorsport programs, and engineering opportunities across the automotive industry.</p>
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Me
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/yourusername" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="/resume.pdf" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+          Resume / CV
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-copy">© 2025 · Automotive Engineer Portfolio · Built with purpose</p>
+    <div class="footer-logo">AUTO.ENG</div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+    });
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    document.querySelectorAll('a, button, .project-card, .comp-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.transform += ' scale(1.8)'; ring.style.opacity = '0.8'; });
+      el.addEventListener('mouseleave', () => { ring.style.opacity = '1'; });
+    });
+
+    // Intersection observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
         }
+      });
+    }, { threshold: 0.15 });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileMenu').classList.add('hidden');
-            });
-        });
+    document.querySelectorAll('.timeline-item, .project-card, .comp-card').forEach(el => observer.observe(el));
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-slide-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe sections for animation
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    // Stagger project cards
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.08}s`;
+    });
+    document.querySelectorAll('.comp-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.1}s`;
+    });
+  </script>
 </body>
 </html>
