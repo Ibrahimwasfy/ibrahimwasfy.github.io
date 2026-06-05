@@ -3,1132 +3,875 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ibrahim Wasfy — Automotive Engineer</title>
+  <meta name="description" content="Ibrahim Reda Wasfy — Automotive Design Engineer specializing in Vehicle Dynamics, Formula Student, and Motorsport Engineering. Based in Cairo, Egypt." />
+  <meta name="keywords" content="Automotive Engineer, Vehicle Dynamics, Formula Student, Motorsport, SolidWorks, MATLAB, Cairo, Egypt" />
+  <meta property="og:title" content="Ibrahim Reda Wasfy — Automotive Engineer" />
+  <meta property="og:description" content="Vehicle Dynamics Engineer | Formula Student Team Leader | Competition-proven engineering from Egypt to Qatar" />
+  <title>Ibrahim Reda Wasfy — Automotive Engineer</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  <style>
-    :root {
-      --black: #0a0a0a;
-      --dark: #111111;
-      --panel: #161616;
-      --border: #2a2a2a;
-      --gold: #c8922a;
-      --gold-bright: #e8a83c;
-      --gold-dim: #7a5520;
-      --white: #f0ede8;
-      --gray: #888880;
-      --light-gray: #c0bdb8;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Barlow', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Custom cursor */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.18s ease-out, width 0.2s, height 0.2s, opacity 0.2s;
-      opacity: 0.6;
-    }
-    body:hover .cursor { opacity: 1; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dim); }
-
-    /* ─── NAV ─────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 60px;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
-    }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex; gap: 36px; list-style: none;
-    }
-    .nav-links a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ─── HERO ────────────────────────────────── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 60px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(200,146,42,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(200,146,42,0.04) 0%, transparent 50%);
-    }
-
-    /* Animated grid lines */
-    .grid-lines {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(200,146,42,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,146,42,0.04) 1px, transparent 1px);
-      background-size: 80px 80px;
-      animation: gridPan 30s linear infinite;
-    }
-    @keyframes gridPan { from { background-position: 0 0; } to { background-position: 80px 80px; } }
-
-    /* Diagonal accent line */
-    .hero-line {
-      position: absolute;
-      top: 0; right: 25%;
-      width: 1px; height: 100%;
-      background: linear-gradient(to bottom, transparent, var(--gold-dim) 40%, var(--gold) 60%, transparent);
-      opacity: 0.3;
-      transform: skewX(-8deg);
-    }
-
-    .hero-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.3s forwards;
-    }
-
-    .hero-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 12vw, 11rem);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s forwards;
-    }
-    .hero-name span { color: var(--gold); }
-
-    .hero-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1.2rem, 3vw, 2.2rem);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--light-gray);
-      margin-top: 16px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.7s forwards;
-    }
-
-    .hero-desc {
-      max-width: 520px;
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--gray);
-      margin-top: 28px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.9s forwards;
-    }
-
-    .hero-cta {
-      display: flex; gap: 16px; margin-top: 44px;
-      opacity: 0;
-      animation: fadeUp 0.8s 1.1s forwards;
-    }
-    .btn {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 14px 36px;
-      border: 1px solid;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-    .btn-primary {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--black);
-      font-weight: 600;
-    }
-    .btn-primary:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
-    .btn-outline {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--gray);
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .hero-stats {
-      position: absolute;
-      right: 60px; bottom: 80px;
-      display: flex; flex-direction: column; gap: 28px;
-      text-align: right;
-      opacity: 0;
-      animation: fadeUp 0.8s 1.3s forwards;
-    }
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── SECTION COMMON ──────────────────────── */
-    section { padding: 100px 60px; }
-
-    .section-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      letter-spacing: 0.03em;
-      line-height: 1;
-      color: var(--white);
-      margin-bottom: 60px;
-    }
-
-    hr.divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 60px;
-    }
-
-    /* ─── ABOUT ───────────────────────────────── */
-    #about { background: var(--dark); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .about-text p {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      color: var(--light-gray);
-      margin-bottom: 20px;
-    }
-    .about-text p strong { color: var(--white); font-weight: 500; }
-
-    .about-sidebar {}
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .info-row:last-child { border-bottom: none; }
-    .info-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-    .info-val {
-      font-size: 0.9rem;
-      color: var(--white);
-      text-align: right;
-    }
-    .info-val a { color: var(--gold); text-decoration: none; }
-    .info-val a:hover { color: var(--gold-bright); }
-
-    /* ─── EXPERIENCE ──────────────────────────── */
-    #experience { background: var(--black); }
-    .exp-list { display: flex; flex-direction: column; gap: 2px; }
-
-    .exp-item {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-left: 3px solid transparent;
-      padding: 32px 40px;
-      transition: border-color 0.3s, background 0.3s;
-      cursor: default;
-    }
-    .exp-item:hover {
-      border-left-color: var(--gold);
-      background: #1a1a1a;
-    }
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
-    }
-    .exp-org {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      text-transform: uppercase;
-    }
-    .exp-period {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .exp-role {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 16px;
-    }
-    .exp-bullets {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    .exp-bullets li {
-      font-size: 0.9rem;
-      color: var(--gray);
-      line-height: 1.6;
-      padding-left: 16px;
-      position: relative;
-    }
-    .exp-bullets li::before {
-      content: '—';
-      position: absolute; left: 0;
-      color: var(--gold-dim);
-      font-size: 0.75rem;
-    }
-
-    /* ─── PROJECTS ────────────────────────────── */
-    #projects { background: var(--dark); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 2px;
-    }
-    .project-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .project-card:hover { background: #1a1a1a; }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-year {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4rem;
-      color: var(--border);
-      line-height: 1;
-      margin-bottom: 8px;
-      transition: color 0.3s;
-    }
-    .project-card:hover .project-year { color: rgba(200,146,42,0.15); }
-    .project-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    .project-desc {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: var(--gray);
-      margin-bottom: 20px;
-    }
-    .project-tools {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .tool-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      border: 1px solid var(--gold-dim);
-      padding: 4px 10px;
-    }
-
-    /* ─── ACHIEVEMENTS ────────────────────────── */
-    #achievements { background: var(--black); }
-    .ach-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-    .ach-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-    .ach-card:hover { background: #1a1a1a; }
-    .ach-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .ach-place {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .ach-event {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-    .ach-detail {
-      font-size: 0.82rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    /* ─── SKILLS ──────────────────────────────── */
-    #skills { background: var(--dark); }
-    .skills-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 60px;
-    }
-    .skill-group-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-    .skill-list { display: flex; flex-direction: column; gap: 12px; }
-    .skill-item {
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .skill-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--light-gray);
-    }
-    .skill-bar {
-      width: 80px; height: 2px;
-      background: var(--border);
-      position: relative;
-    }
-    .skill-fill {
-      position: absolute;
-      left: 0; top: 0; height: 100%;
-      background: var(--gold);
-    }
-
-    .tag-cloud {
-      display: flex; flex-wrap: wrap; gap: 10px;
-    }
-    .skill-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .skill-tag:hover { color: var(--gold); border-color: var(--gold); }
-
-    /* ─── INTERNSHIPS ─────────────────────────── */
-    #internships { background: var(--black); }
-    .intern-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-    .intern-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 28px 32px;
-      transition: background 0.3s, border-left-color 0.3s;
-      border-left: 3px solid transparent;
-    }
-    .intern-card:hover { background: #1a1a1a; border-left-color: var(--gold); }
-    .intern-company {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .intern-role {
-      font-size: 0.8rem;
-      color: var(--gold-dim);
-      font-style: italic;
-      margin-bottom: 12px;
-    }
-    .intern-date {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 12px;
-    }
-    .intern-notes {
-      font-size: 0.82rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    /* ─── CONTACT ─────────────────────────────── */
-    #contact {
-      background: var(--dark);
-      text-align: center;
-    }
-    .contact-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .contact-email {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      color: var(--gold);
-      letter-spacing: 0.04em;
-      display: block;
-      margin-bottom: 40px;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .contact-email:hover { color: var(--gold-bright); }
-    .contact-links {
-      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
-    }
-    .contact-link {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      padding: 12px 24px;
-      border: 1px solid var(--border);
-      transition: all 0.2s;
-    }
-    .contact-link:hover { color: var(--gold); border-color: var(--gold); }
-
-    /* ─── FOOTER ──────────────────────────────── */
-    footer {
-      padding: 32px 60px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid var(--border);
-      background: var(--black);
-    }
-    .footer-copy {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.12em;
-      color: var(--gold-dim);
-    }
-
-    /* ─── SCROLL REVEAL ───────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .nav-links { gap: 20px; }
-      section { padding: 70px 24px; }
-      hr.divider { margin: 0 24px; }
-      #hero { padding: 0 24px 70px; }
-      .hero-stats { right: 24px; bottom: 70px; flex-direction: row; gap: 32px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .ach-grid { grid-template-columns: 1fr; }
-      .intern-grid { grid-template-columns: 1fr; }
-      .skills-layout { grid-template-columns: 1fr; gap: 40px; }
-      footer { flex-direction: column; gap: 12px; text-align: center; }
-    }
-    @media (max-width: 600px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .hero-stats { position: static; margin-top: 40px; flex-direction: row; justify-content: flex-start; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
+  <!-- ═══════════════════════════════════ LOADER ═══════════════════════════════════ -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo">IRW</div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+      <div class="loader-text">INITIALISING SYSTEMS</div>
+    </div>
+  </div>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#hero" class="nav-logo">IRW</a>
-    <ul class="nav-links">
+  <!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-logo">
+      <a href="#hero" aria-label="Home">IRW</a>
+    </div>
+    <ul class="nav-links" role="list">
       <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#achievements">Results</a></li>
+      <li><a href="#highlights">Highlights</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#formula-student">Formula Student</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#workflow">Process</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <a href="assets/Ibrahim_Reda_Wasfy_CV.pdf" class="nav-cta" download aria-label="Download CV">
+      <span>Download CV</span>
+    </a>
+    <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="grid-lines"></div>
-    <div class="hero-line"></div>
-
-    <p class="hero-label">Automotive Engineer </p>
-    <h1 class="hero-name">Ibrahim<br><span>Wasfy</span></h1>
-    <p class="hero-title">Vehicle Dynamics · Design · Leadership</p>
-    <p class="hero-desc">
-      Team Leader at HFS Racing Team, 
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+  <!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+  <section id="hero" aria-label="Hero introduction">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-content">
+      <div class="hero-tag" data-reveal>AUTOMOTIVE ENGINEER · CAIRO, EGYPT</div>
+      <h1 class="hero-name" data-reveal>
+        <span class="hero-first">Ibrahim</span>
+        <span class="hero-last">Reda Wasfy</span>
+      </h1>
+      <div class="hero-title" data-reveal>
+        Vehicle Dynamics &amp; Formula Student Engineer
+      </div>
+      <p class="hero-summary" data-reveal>
+        Competition-hardened engineer with hands-on ownership of full vehicle development cycles — from first-principles calculations through CAD, simulation, manufacturing, and track validation. Team Leader, HFS Racing. 1st Place EVER Egypt 2024.
+      </p>
+      <div class="hero-actions" data-reveal>
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="assets/Ibrahim_Reda_Wasfy_CV.pdf" class="btn btn-secondary" download>Download CV</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
     </div>
+    <div class="hero-profile" data-reveal>
+      <div class="profile-frame">
+        <img src="assets/profile/profile.jpg" alt="Ibrahim Reda Wasfy" onerror="this.parentElement.classList.add('no-image')" />
+        <div class="profile-placeholder" aria-hidden="true">
+          <span>IRW</span>
+          <small>Add profile.jpg to assets/profile/</small>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-num" data-count="3">0</span>
+          <span class="stat-label">Competitions</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-num" data-count="4">0</span>
+          <span class="stat-label">Race Cars Built</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-num" data-count="6">0</span>
+          <span class="stat-label">Internships</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">SCROLL</span>
+    </div>
+  </section>
 
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">2</div>
-        <div class="stat-label">Competition Teams</div>
-      </div>
-      <div>
-        <div class="stat-num">4+</div>
-        <div class="stat-label">Cars Built</div>
-      </div>
-      <div>
-        <div class="stat-num">6</div>
-        <div class="stat-label">Internships</div>
+  <!-- ═══════════════════════════════════ ABOUT ═══════════════════════════════════ -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="section-label">01 / ABOUT</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 id="about-heading" class="section-title">Engineering <em>with intent.</em></h2>
+          <p class="about-lead">
+            I am an Automotive Engineering graduate from Helwan University — Mataria, shaped entirely by a lifelong obsession with motorsport. Every academic and professional choice I have made has been pointed in one direction: building faster, more dynamically capable machines.
+          </p>
+          <p>
+            My engineering foundation is built on rigorous first-principles work across vehicle dynamics and steering systems, backed by real competition results. I have led teams from Cairo to Doha, taking ownership of the complete development cycle — calculations, CAD, simulation, manufacturing, testing, and technical documentation — rather than contributing to isolated parts of the process.
+          </p>
+          <p>
+            I approach engineering with precision and persistence. Whether iterating through steering geometry to optimise Ackermann behaviour, or leading a multidisciplinary team under FSUK judging scrutiny, I bring the same detail-oriented mindset that motorsport demands.
+          </p>
+          <div class="about-pillars">
+            <div class="pillar">
+              <div class="pillar-icon">⬡</div>
+              <strong>Vehicle Dynamics</strong>
+              <span>Steering geometry, handling analysis, kinematics optimisation</span>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">⬡</div>
+              <strong>Formula Student</strong>
+              <span>Full car development, team leadership, FSUK preparation</span>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">⬡</div>
+              <strong>Systems Engineering</strong>
+              <span>CAD, FEA, simulation, manufacturing integration</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-sidebar">
+          <div class="about-card">
+            <div class="about-card-label">OBJECTIVE</div>
+            <p>Seeking a full-time role in automotive development, vehicle dynamics, or motorsport engineering where competition-tested technical judgement and end-to-end ownership create real vehicle performance gains.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-label">EDUCATION</div>
+            <p><strong>Bachelor of Automotive Engineering</strong><br />
+            Capital (Helwan) University — Mataria<br />
+            <span class="dim">2021 – 2026 · Cairo, Egypt</span></p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-label">LOCATION &amp; STATUS</div>
+            <p>Cairo, Egypt<br />
+            Military Service: Exempted<br />
+            Egyptian Driving Licence<br />
+            Open to relocation</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-label">LANGUAGES</div>
+            <p>Arabic — Native<br />
+            English — Full professional proficiency<br />
+            French — Beginner<br />
+            German — Beginner</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <hr class="divider" />
+  <!-- ═══════════════════════════════════ HIGHLIGHTS ═══════════════════════════════════ -->
+  <section id="highlights" aria-labelledby="highlights-heading">
+    <div class="container">
+      <div class="section-label">02 / HIGHLIGHTS</div>
+      <h2 id="highlights-heading" class="section-title">Engineering <em>achievements.</em></h2>
+      <div class="highlights-grid">
 
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-tag reveal">Profile</p>
-    <h2 class="section-title reveal">About Me</h2>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>
-          A motorsport enthusiast turned engineer. I've followed my passion for vehicles since childhood, 
-          ultimately earning a <strong>Bachelor of Automotive Engineering</strong> from Capital (Helwan) University — 
-          Mataria Branch, graduating 2026.
-        </p>
-        <p>
-          My hands-on journey spans two competitive engineering teams: <strong>Head of Vehicle Dynamics</strong> 
-          in Helwan Racing Team E-Rally, and currently <strong>Team Leader</strong> in HFS Racing Team, 
-          where I oversee the full vehicle development cycle — from engineering calculations and CAD design 
-          through simulation, manufacturing, assembly, and testing.
-        </p>
-        <p>
-          Beyond motorsport, I've gained real-world workshop experience across six industry internships, 
-          working with brands from Jaguar Land Rover to exotic marques like McLaren, Lamborghini, and Porsche.
-        </p>
+        <div class="highlight-card highlight-card--gold">
+          <div class="hc-medal">🥇</div>
+          <div class="hc-content">
+            <div class="hc-tag">EVER EGYPT 2024</div>
+            <h3>1st Place — Overall Dynamic Track</h3>
+            <p>Triple podium at Egypt's premier EV competition — Dynamic Track, Design, and Cost categories. Full electric urban car built from scratch: calculations through assembly and track testing.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hc-medal">🏁</div>
+          <div class="hc-content">
+            <div class="hc-tag">SHELL ECO-MARATHON QATAR 2025</div>
+            <h3>6th Place — Urban Gasoline</h3>
+            <p>Completed technical inspection for both urban and prototype vehicles in consecutive years at an international Shell-organised competition in Doha, Qatar.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hc-medal">⚙️</div>
+          <div class="hc-content">
+            <div class="hc-tag">HFS RACING TEAM</div>
+            <h3>Formula Student Team Leader</h3>
+            <p>Leading multidisciplinary development of a Formula Student one-seater targeting FSUK. Full steering system ownership — Ackermann geometry, rack-and-pinion design, steering box validation.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hc-medal">🏎️</div>
+          <div class="hc-content">
+            <div class="hc-tag">HELWAN RACING TEAM E-RALLY</div>
+            <h3>Head of Vehicle Dynamics</h3>
+            <p>Led vehicle dynamics team through full development cycle. Performed brake and steering system calculations for a 256 kg EV to EVER technical regulations. FEA-validated steering components.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hc-medal">🏁</div>
+          <div class="hc-content">
+            <div class="hc-tag">ATCE — FIA AFFILIATED</div>
+            <h3>Official FIA Timekeeper</h3>
+            <p>Operates official FIA timing systems for competitive categories at Automobile and Touring Club Egypt events. Coordinates with race control for regulatory compliance and results accuracy.</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hc-medal">🔧</div>
+          <div class="hc-content">
+            <div class="hc-tag">EXOTIC CAR WORKSHOP</div>
+            <h3>McLaren · Lamborghini · Porsche</h3>
+            <p>Hands-on electrical fault diagnosis on exotic vehicles at ESOTICA Service Centre, New Cairo — using wiring diagrams and diagnostic systems on high-performance marques.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Achievement stats bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-big" data-count="1">0</span>
+          <span class="stat-desc">1st Place Podiums<br /><small>EVER Egypt 2024</small></span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-big" data-count="4">0</span>
+          <span class="stat-desc">Race Cars Built<br /><small>Full development cycle</small></span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-big" data-count="6">0</span>
+          <span class="stat-desc">Industry Internships<br /><small>JLR · McLaren · MCV</small></span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-big" data-count="2">0</span>
+          <span class="stat-desc">International Competitions<br /><small>Qatar · Egypt</small></span>
+        </div>
       </div>
     </div>
   </section>
 
-  <hr class="divider" />
+  <!-- ═══════════════════════════════════ SKILLS ═══════════════════════════════════ -->
+  <section id="skills" aria-labelledby="skills-heading">
+    <div class="container">
+      <div class="section-label">03 / TECHNICAL SKILLS</div>
+      <h2 id="skills-heading" class="section-title">Tools &amp; <em>capabilities.</em></h2>
+      <div class="skills-grid">
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <p class="section-tag reveal">Career</p>
-    <h2 class="section-title reveal">Experience</h2>
-    <div class="exp-list">
-
-      <div class="exp-item reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-org">HFS Racing Team — Formula Student</div>
-            <div class="exp-role">Team Leader</div>
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">◈</div>
+            <h3>CAD &amp; Design</h3>
           </div>
-          <div class="exp-period">Jun 2025 — Present</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Led a multidisciplinary team across vehicle dynamics, powertrain, aerodynamics, and frame to develop a Formula Student prototype</li>
-          <li>Managed project timeline, setting milestones to meet Formula Student UK competition deadlines</li>
-          <li>Represented the team in external communications with sponsors</li>
-          <li>Coordinated preparation for Formula Student UK, aligning technical work with competition judging criteria</li>
-          <li>Directed steering system development including geometry definition, Ackermann optimization, and handling performance analysis</li>
-        </ul>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-org">Helwan Racing Team — E-Rally</div>
-            <div class="exp-role">Head of Vehicle Dynamics</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name">SolidWorks <span class="skill-badge">CSWP</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="92"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">AutoCAD</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Mechanical Design</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+            </div>
           </div>
-          <div class="exp-period">Mar 2025 — Jan 2026</div>
         </div>
-        <ul class="exp-bullets">
-          <li>Led and managed the complete Vehicle Dynamics team, setting technical direction and project priorities</li>
-          <li>Managed budgets, timelines, and resources across the department</li>
-          <li>Supervised the work through the manufacturing phase</li>
-        </ul>
-      </div>
 
-      <div class="exp-item reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-org">Helwan Racing Team — E-Rally</div>
-            <div class="exp-role">Vehicle Dynamics Vice Head</div>
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">◈</div>
+            <h3>Simulation &amp; Analysis</h3>
           </div>
-          <div class="exp-period">Sep 2024 — Mar 2025</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Mechanical design and calculations for Urban and Prototype cars</li>
-          <li>Engineering BOM and DBR documentation</li>
-          <li>Led the preparation phase for new team candidates</li>
-        </ul>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-org">Helwan Racing Team — E-Rally</div>
-            <div class="exp-role">Vehicle Dynamics Member</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name">MATLAB</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Simulink</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">FEA Simulation</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">IPG CarMaker</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="72"></div></div>
+            </div>
           </div>
-          <div class="exp-period">Jul 2023 — Sep 2024</div>
         </div>
-        <ul class="exp-bullets">
-          <li>Steering and brake calculations for Urban car</li>
-          <li>Mechanical design and FEA for steering parts</li>
-          <li>Authored the design report for vehicle dynamics section</li>
-        </ul>
-      </div>
 
-      <div class="exp-item reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-org">Helwan Racing Team</div>
-            <div class="exp-role">Fundraising & Public Relations</div>
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">◈</div>
+            <h3>Vehicle Dynamics</h3>
           </div>
-          <div class="exp-period">Sep 2024 — Jan 2026</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Secured financial support and cultivated donor relationships</li>
-          <li>Prepared and presented sponsorship proposals</li>
-        </ul>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-org">Revitup Drifting Competition</div>
-            <div class="exp-role">Motorsport Organizer</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name">Optimum Kinematics</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Steering Geometry</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Brake System Design</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Suspension Kinematics</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="82"></div></div>
+            </div>
           </div>
-          <div class="exp-period">Dec 2022 — Sep 2024</div>
         </div>
-        <ul class="exp-bullets">
-          <li>Designed and drew competition tracks</li>
-          <li>Managed event operations: racer safety, car handling, audience management, and incident response</li>
-        </ul>
-      </div>
 
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <p class="section-tag reveal">Engineering Work</p>
-    <h2 class="section-title reveal">Projects</h2>
-    <div class="projects-grid">
-
-      <div class="project-card reveal">
-        <div class="project-year">2026</div>
-        <div class="project-name">Formula Student One-Seater</div>
-        <p class="project-desc">
-          Owned the complete steering system development from concept to final hardware. Designed geometry 
-          based on Ackermann principles and tire slip characteristics. Developed full rack and pinion system 
-          including ratio selection, rack travel, and steering effort. Designed and validated full steering 
-          box assembly integrated with chassis and suspension constraints.
-        </p>
-        <div class="project-tools">
-          <span class="tool-tag">SolidWorks</span>
-          <span class="tool-tag">Matlab</span>
-          <span class="tool-tag">Optimum Kinematics</span>
-          <span class="tool-tag">Excel</span>
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">◈</div>
+            <h3>Engineering &amp; Documentation</h3>
+          </div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name">Excel (Engineering Calcs)</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Technical Reporting</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">BOM &amp; DBR</div>
+              <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="project-card reveal">
-        <div class="project-year">2025</div>
-        <div class="project-name">Gasoline Urban Car</div>
-        <p class="project-desc">
-          Built a Gasoline Urban car from scratch for Shell Eco-Marathon, running in parallel with the 
-          Electric Prototype. Full development cycle: calculations, design, manufacturing, and testing. 
-          Achieved 6th place in the Urban Gasoline Category at Shell Eco-Marathon Doha, Qatar.
-        </p>
-        <div class="project-tools">
-          <span class="tool-tag">SolidWorks</span>
-          <span class="tool-tag">Excel</span>
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">◈</div>
+            <h3>Certifications</h3>
+          </div>
+          <div class="cert-list">
+            <div class="cert-item">
+              <div class="cert-logo">SW</div>
+              <div>
+                <strong>CSWP</strong>
+                <span>SolidWorks Certified Professional</span>
+              </div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo">ML</div>
+              <div>
+                <strong>MATLAB Fundamentals</strong>
+                <span>MathWorks</span>
+              </div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo">HP</div>
+              <div>
+                <strong>Motorsport Fabrication &amp; Wiring</strong>
+                <span>HP Academy</span>
+              </div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo">FIA</div>
+              <div>
+                <strong>FIA Affiliated</strong>
+                <span>ATCE Timekeeper</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="project-card reveal">
-        <div class="project-year">2025</div>
-        <div class="project-name">Electric Prototype Car</div>
-        <p class="project-desc">
-          Developed an Electric Prototype vehicle in parallel with the Urban Gasoline car for Shell 
-          Eco-Marathon. Passed full Technical Inspection at the Doha competition, covering all safety 
-          and performance scrutineering requirements.
-        </p>
-        <div class="project-tools">
-          <span class="tool-tag">SolidWorks</span>
-          <span class="tool-tag">Excel</span>
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">◈</div>
+            <h3>Leadership &amp; Soft Skills</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Team Leadership</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Multidisciplinary Coordination</span>
+            <span class="skill-tag">Sponsor Relations</span>
+            <span class="skill-tag">Technical Reporting</span>
+            <span class="skill-tag">Negotiation</span>
+            <span class="skill-tag">Multitasking</span>
+            <span class="skill-tag">Team Development</span>
+          </div>
         </div>
-      </div>
 
-      <div class="project-card reveal">
-        <div class="project-year">2024</div>
-        <div class="project-name">Electric Urban Car</div>
-        <p class="project-desc">
-          Built an Electric Urban car from scratch through the complete engineering cycle — calculation, 
-          design, manufacturing, and testing — to participate in the EVER competition. 
-          Achieved 1st Place Overall in the Dynamic Track event.
-        </p>
-        <div class="project-tools">
-          <span class="tool-tag">SolidWorks</span>
-          <span class="tool-tag">Excel</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements">
-    <p class="section-tag reveal">Competition Results</p>
-    <h2 class="section-title reveal">Achievements</h2>
-    <div class="ach-grid">
-      <div class="ach-card reveal">
-        <span class="ach-icon">🏆</span>
-        <div class="ach-place">1st</div>
-        <div class="ach-event">EVER Egypt 2024</div>
-        <p class="ach-detail">1st Place Overall Dynamic Track<br>North Coast, Egypt</p>
-      </div>
-      <div class="ach-card reveal">
-        <span class="ach-icon">🏅</span>
-        <div class="ach-place">6th</div>
-        <div class="ach-event">Shell Eco-Marathon 2025</div>
-        <p class="ach-detail">Urban Gasoline Category<br>Doha, Qatar — Passed Technical Inspection for both Urban &amp; Prototype</p>
-      </div>
-      <div class="ach-card reveal">
-        <span class="ach-icon">✅</span>
-        <div class="ach-place">TI ✓</div>
-        <div class="ach-event">Shell Eco-Marathon 2025</div>
-        <p class="ach-detail">Technical Inspection passed<br>Urban &amp; Prototype Cars — Doha, Qatar</p>
       </div>
     </div>
   </section>
 
-  <hr class="divider" />
+  <!-- ═══════════════════════════════════ EXPERIENCE ═══════════════════════════════════ -->
+  <section id="experience" aria-labelledby="experience-heading">
+    <div class="container">
+      <div class="section-label">04 / EXPERIENCE</div>
+      <h2 id="experience-heading" class="section-title">Career <em>timeline.</em></h2>
+      <div class="timeline">
 
-  <!-- INTERNSHIPS -->
-  <section id="internships">
-    <p class="section-tag reveal">Industry Exposure</p>
-    <h2 class="section-title reveal">Internships</h2>
-    <div class="intern-grid">
+        <div class="timeline-item timeline-item--current">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jun 2025 – Present</div>
+          <div class="timeline-card">
+            <div class="tc-tag">FORMULA STUDENT</div>
+            <h3>Team Leader — HFS Racing Team</h3>
+            <p>Leading multidisciplinary development of a Formula Student prototype targeting FSUK. Directing vehicle dynamics, powertrain, aerodynamics, and frame subteams. Managing FSUK documentation, scrutineering forms, and sponsor communications.</p>
+            <div class="tc-skills">SolidWorks · MATLAB · Optimum Kinematics · Excel</div>
+          </div>
+        </div>
 
-      <div class="intern-card reveal">
-        <div class="intern-company">Ezz-Elarab Automotive Group</div>
-        <div class="intern-role">Engineer Intern</div>
-        <div class="intern-date">September 2024 · 6th of October, Giza</div>
-        <p class="intern-notes">Automotive Engineering training center courses; attended engineer briefings and new model launch meetings.</p>
+        <div class="timeline-item timeline-item--current">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jul 2025 – Jul 2026</div>
+          <div class="timeline-card">
+            <div class="tc-tag">VEHICLE DYNAMICS</div>
+            <h3>Vehicle Dynamics Lead — HFS Racing</h3>
+            <p>Complete steering system ownership: Ackermann geometry, rack-and-pinion ratio, rack travel, steering effort analysis, and steering box assembly design and validation integrated with suspension kinematics.</p>
+            <div class="tc-skills">Optimum Kinematics · SolidWorks · MATLAB · FEA</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Mar 2025 – Jan 2026</div>
+          <div class="timeline-card">
+            <div class="tc-tag">E-RALLY TEAM</div>
+            <h3>Head of Vehicle Dynamics — Helwan Racing Team</h3>
+            <p>Set technical direction and project priorities for the vehicle dynamics team. Managed budgets, timelines, and resources. Supervised manufacturing phase. Delivered a competition vehicle to EVER technical requirements.</p>
+            <div class="tc-skills">SolidWorks · FEA · Excel · Technical Reporting</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 2024 – Present</div>
+          <div class="timeline-card">
+            <div class="tc-tag">ORGANISATION</div>
+            <h3>Official FIA Timekeeper — ATCE</h3>
+            <p>Operates official FIA timing systems across competitive event categories. Coordinates with race control for regulatory compliance and result validation at Automobile and Touring Club Egypt events.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 2024</div>
+          <div class="timeline-card">
+            <div class="tc-tag">INTERNSHIP</div>
+            <h3>Engineer Intern — Ezz-Elarab Automotive Group</h3>
+            <p>Completed automotive engineering training programmes and attended manufacturer update briefings and new vehicle technical training sessions for engineers.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Aug 2024</div>
+          <div class="timeline-card">
+            <div class="tc-tag">INTERNSHIP</div>
+            <h3>Workshop Engineer Intern — MCV (Manufacturing Commercial Vehicles)</h3>
+            <p>Rotated across Buses/Trucks/Vans and Engine Overhaul departments at a commercial vehicle manufacturer. Gained hands-on exposure to heavy vehicle assembly and engine overhaul procedures.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jul 2024</div>
+          <div class="timeline-card">
+            <div class="tc-tag">INTERNSHIP · EXOTIC VEHICLES</div>
+            <h3>Workshop Engineer Intern — ESOTICA Service Centre</h3>
+            <p>Electrical fault diagnosis using wiring diagrams on exotic marques including McLaren, Lamborghini, and Porsche at a specialist high-performance service centre in New Cairo.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jun 2024</div>
+          <div class="timeline-card">
+            <div class="tc-tag">INTERNSHIP · JAGUAR LAND ROVER</div>
+            <h3>Workshop Engineer Intern — MTI Jaguar Land Rover Egypt</h3>
+            <p>Completed Pre-Delivery Inspection procedures and test plan documentation on Range Rover and Defender models at an authorised JLR dealership and service centre.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 2023</div>
+          <div class="timeline-card">
+            <div class="tc-tag">INTERNSHIP</div>
+            <h3>Workshop Engineer Intern — Abou Ghali Automotive</h3>
+            <p>Performed diesel engine services and supported the workshop manager in daily job-card scheduling and workflow coordination.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jul 2023</div>
+          <div class="timeline-card">
+            <div class="tc-tag">INTERNSHIP</div>
+            <h3>Workshop Engineer Intern — Elsaba Auto-Service Nissan</h3>
+            <p>Carried out scheduled maintenance and systematic visual inspections across 10+ vehicles daily following Nissan OEM service protocols.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Dec 2022 – Sep 2024</div>
+          <div class="timeline-card">
+            <div class="tc-tag">MOTORSPORT</div>
+            <h3>Motorsport Organiser — Revitup Drifting Competition</h3>
+            <p>Track layout design, event coordination, and safety management across drifting competition events. Liaised with racers, support crews, and audiences to ensure smooth event execution.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 2021 – Jun 2026</div>
+          <div class="timeline-card">
+            <div class="tc-tag">EDUCATION</div>
+            <h3>Bachelor of Automotive Engineering — Helwan University, Mataria</h3>
+            <p>Coursework: Vehicle Dynamics, Vehicle Performance, Automotive Control Systems Design, Chassis Design, Stress Analysis, Material Science, Mechatronics, Automatic Control, Computer Aided Design, Automotive Electrical and Electronic Systems.</p>
+          </div>
+        </div>
+
       </div>
-
-      <div class="intern-card reveal">
-        <div class="intern-company">MCV — Manufacturing Commercial Vehicles</div>
-        <div class="intern-role">Workshop Engineer Intern</div>
-        <div class="intern-date">August 2024 · El Obour</div>
-        <p class="intern-notes">Buses, Trucks &amp; Vans Department; Engine Overhaul Department hands-on training.</p>
-      </div>
-
-      <div class="intern-card reveal">
-        <div class="intern-company">ESOTICA Service Centre</div>
-        <div class="intern-role">Workshop Engineer Intern</div>
-        <div class="intern-date">July 2024 · New Cairo</div>
-        <p class="intern-notes">Electrical fault diagnosis via wiring diagrams; servicing exotic cars including McLaren, Lamborghini, and Porsche.</p>
-      </div>
-
-      <div class="intern-card reveal">
-        <div class="intern-company">MTI Jaguar Land Rover Egypt</div>
-        <div class="intern-role">Workshop Engineer Intern</div>
-        <div class="intern-date">June 2024 · El Obour</div>
-        <p class="intern-notes">Test plan development; Pre-Delivery Inspection (PDI) procedures for Land Rover vehicles.</p>
-      </div>
-
-      <div class="intern-card reveal">
-        <div class="intern-company">Abou Ghali Automotive</div>
-        <div class="intern-role">Workshop Engineer Intern</div>
-        <div class="intern-date">September 2023 · El Obour</div>
-        <p class="intern-notes">Diesel engine disassembly and assembly; workshop management and operations.</p>
-      </div>
-
-      <div class="intern-card reveal">
-        <div class="intern-company">Elsaba Auto-Service Nissan</div>
-        <div class="intern-role">Workshop Engineer Intern</div>
-        <div class="intern-date">July 2023 · Katameya, Cairo</div>
-        <p class="intern-notes">Quick service operations; vehicle visual inspection and customer-facing workshop workflows.</p>
-      </div>
-
     </div>
   </section>
 
-  <hr class="divider" />
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-tag reveal">Capabilities</p>
-    <h2 class="section-title reveal">Skills & Tools</h2>
-    <div class="skills-layout">
-
-      <div class="reveal">
-        <div class="skill-group-title">Technical Engineering</div>
-        <div class="skill-list">
-          <div class="skill-item">
-            <span class="skill-name">Vehicle Dynamics</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Mechanical Design</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">FEA / Simulation</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Steering Systems</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Manufacturing</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+  <!-- ═══════════════════════════════════ FORMULA STUDENT ═══════════════════════════════════ -->
+  <section id="formula-student" aria-labelledby="fs-heading">
+    <div class="container">
+      <div class="section-label">05 / FORMULA STUDENT</div>
+      <h2 id="fs-heading" class="section-title">HFS Racing <em>Team.</em></h2>
+      <div class="fs-layout">
+        <div class="fs-intro">
+          <p class="fs-lead">Building a Formula Student one-seater from the ground up for competition at Formula Student United Kingdom — one of the world's most rigorous student engineering competitions, scrutinised by professional motorsport engineers.</p>
+          <div class="fs-role-badge">
+            <span class="role-title">TEAM LEADER</span>
+            <span class="role-sub">HFS Racing Team · Jun 2025 – Present</span>
           </div>
         </div>
-      </div>
 
-      <div class="reveal">
-        <div class="skill-group-title">Software</div>
-        <div class="tag-cloud">
-          <span class="skill-tag">SolidWorks</span>
-          <span class="skill-tag">CSWA Certified</span>
-          <span class="skill-tag">Matlab</span>
-          <span class="skill-tag">Optimum Kinematics</span>
-          <span class="skill-tag">IPG CarMaker</span>
-          <span class="skill-tag">AutoCAD</span>
-          <span class="skill-tag">Microsoft Excel</span>
-          <span class="skill-tag">PowerPoint</span>
-          <span class="skill-tag">Word</span>
+        <div class="fs-grid">
+          <div class="fs-card">
+            <div class="fs-card-icon">🎯</div>
+            <h4>Team Leadership</h4>
+            <ul>
+              <li>Leading multidisciplinary subteams: vehicle dynamics, powertrain, aerodynamics, and frame</li>
+              <li>Setting project milestones aligned with FSUK competition deadlines</li>
+              <li>Sponsor communications and external representation</li>
+              <li>Managing scrutineering forms and FSUK regulatory documentation</li>
+            </ul>
+          </div>
+
+          <div class="fs-card fs-card--highlight">
+            <div class="fs-card-icon">⚙️</div>
+            <h4>Steering System — Technical Ownership</h4>
+            <ul>
+              <li>Full Ackermann geometry definition and analysis</li>
+              <li>Rack and pinion system design: ratio, rack travel, effort calculations</li>
+              <li>Steering box assembly design and chassis-integration validation</li>
+              <li>Iterative optimisation balancing responsiveness, effort, and packaging</li>
+              <li>Integration with suspension kinematics and performance targets</li>
+              <li>FSUK design report and technical justification documentation</li>
+            </ul>
+          </div>
+
+          <div class="fs-card">
+            <div class="fs-card-icon">📐</div>
+            <h4>Vehicle Dynamics</h4>
+            <ul>
+              <li>Steering geometry design targeting handling performance</li>
+              <li>Handling analysis and Ackermann optimisation</li>
+              <li>Suspension kinematics alignment with overall vehicle targets</li>
+              <li>Junior member mentoring and technical training</li>
+            </ul>
+          </div>
+
+          <div class="fs-card">
+            <div class="fs-card-icon">🛠️</div>
+            <h4>Tools Used</h4>
+            <div class="fs-tools">
+              <span>SolidWorks</span>
+              <span>MATLAB</span>
+              <span>Optimum Kinematics</span>
+              <span>Microsoft Excel</span>
+              <span>FEA Simulation</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="reveal">
-        <div class="skill-group-title">Leadership & Management</div>
-        <div class="tag-cloud">
-          <span class="skill-tag">Team Leadership</span>
-          <span class="skill-tag">Project Management</span>
-          <span class="skill-tag">Negotiation</span>
-          <span class="skill-tag">Sponsorship</span>
-          <span class="skill-tag">Cross-functional</span>
-          <span class="skill-tag">Multitasking</span>
-          <span class="skill-tag">Technical Documentation</span>
-          <span class="skill-tag">Budget Management</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-inner">
-      <p class="section-tag reveal" style="text-align:center">Let's Work Together</p>
-      <h2 class="section-title reveal" style="text-align:center; margin-bottom: 32px;">Get In Touch</h2>
-      <a href="mailto:ibrahimreda527@gmail.com" class="contact-email reveal">ibrahimreda527@gmail.com</a>
-      <div class="contact-links reveal">
-        <a href="tel:+201550886532" class="contact-link">+20 155 088 6532</a>
-        <a href="https://linkedin.com/in/ibrahimwasfy" target="_blank" class="contact-link">LinkedIn</a>
-        <a href="mailto:ibrahimreda527@gmail.com" class="contact-link">Send Email</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-copy">© 2026 Ibrahim Reda Wasfy · Automotive Engineer · Cairo, Egypt</span>
-    <span class="footer-logo">IRW</span>
+  <!-- ═══════════════════════════════════ PROJECTS ═══════════════════════════════════ -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+      <div class="section-label">06 / PROJECTS</div>
+      <h2 id="projects-heading" class="section-title">Engineering <em>case studies.</em></h2>
+
+      <div class="project-filters" role="tablist" aria-label="Project filter">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="formula-student" role="tab" aria-selected="false">Formula Student</button>
+        <button class="filter-btn" data-filter="eco-marathon" role="tab" aria-selected="false">Shell Eco-Marathon</button>
+        <button class="filter-btn" data-filter="ev" role="tab" aria-selected="false">Electric Vehicles</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Projects rendered by JS from projectsData -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close project">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ WORKFLOW ═══════════════════════════════════ -->
+  <section id="workflow" aria-labelledby="workflow-heading">
+    <div class="container">
+      <div class="section-label">07 / ENGINEERING PROCESS</div>
+      <h2 id="workflow-heading" class="section-title">How I <em>engineer.</em></h2>
+      <div class="workflow-track">
+        <div class="workflow-step" data-step="01">
+          <div class="ws-icon">🔬</div>
+          <div class="ws-content">
+            <strong>Research</strong>
+            <span>Regulations, benchmarks, first-principles theory</span>
+          </div>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step" data-step="02">
+          <div class="ws-icon">💡</div>
+          <div class="ws-content">
+            <strong>Concept</strong>
+            <span>Layout decisions, trade studies, design targets</span>
+          </div>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step" data-step="03">
+          <div class="ws-icon">📐</div>
+          <div class="ws-content">
+            <strong>CAD Design</strong>
+            <span>SolidWorks parametric modelling and assembly</span>
+          </div>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step" data-step="04">
+          <div class="ws-icon">⚡</div>
+          <div class="ws-content">
+            <strong>Simulation</strong>
+            <span>FEA, MATLAB, Optimum K, IPG CarMaker</span>
+          </div>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step" data-step="05">
+          <div class="ws-icon">🔄</div>
+          <div class="ws-content">
+            <strong>Optimisation</strong>
+            <span>Iterate on geometry, loads, packaging</span>
+          </div>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step" data-step="06">
+          <div class="ws-icon">🏭</div>
+          <div class="ws-content">
+            <strong>Manufacturing</strong>
+            <span>Workshop supervision, fabrication oversight</span>
+          </div>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step" data-step="07">
+          <div class="ws-icon">🏁</div>
+          <div class="ws-content">
+            <strong>Testing</strong>
+            <span>Track validation, data collection, refinement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ GALLERY ═══════════════════════════════════ -->
+  <section id="gallery" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div class="section-label">08 / GALLERY</div>
+      <h2 id="gallery-heading" class="section-title">Engineering <em>work.</em></h2>
+      <p class="gallery-hint">Add your engineering images to <code>assets/gallery/</code> and update the gallery array in <code>script.js</code></p>
+      <div class="gallery-filters">
+        <button class="gallery-filter active" data-gfilter="all">All</button>
+        <button class="gallery-filter" data-gfilter="cad">CAD Models</button>
+        <button class="gallery-filter" data-gfilter="simulation">Simulation</button>
+        <button class="gallery-filter" data-gfilter="manufacturing">Manufacturing</button>
+        <button class="gallery-filter" data-gfilter="testing">Testing</button>
+        <button class="gallery-filter" data-gfilter="competition">Competition</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-close" aria-label="Close">&times;</button>
+    <button class="lb-prev" aria-label="Previous">&#8249;</button>
+    <button class="lb-next" aria-label="Next">&#8250;</button>
+    <div class="lb-img-wrap"><img id="lbImage" src="" alt="" /></div>
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════ RESUME ═══════════════════════════════════ -->
+  <section id="resume" aria-labelledby="resume-heading">
+    <div class="container">
+      <div class="section-label">09 / RÉSUMÉ</div>
+      <h2 id="resume-heading" class="section-title">Download <em>CV.</em></h2>
+      <div class="resume-layout">
+        <div class="resume-preview">
+          <div class="resume-card">
+            <div class="resume-header-preview">
+              <div class="rh-name">Ibrahim Reda Wasfy</div>
+              <div class="rh-title">Automotive Engineer — Fresh Graduate</div>
+              <div class="rh-contact">ibrahimreda527@gmail.com · +20 155 088 6532</div>
+            </div>
+            <div class="resume-sections-preview">
+              <div class="rsp-row"><strong>Education</strong><span>Helwan University – Mataria, B.Eng Automotive, 2026</span></div>
+              <div class="rsp-row"><strong>Team Leader</strong><span>HFS Racing · Formula Student UK</span></div>
+              <div class="rsp-row"><strong>Head of VD</strong><span>Helwan Racing Team E-Rally</span></div>
+              <div class="rsp-row"><strong>Achievements</strong><span>🥇 EVER Egypt 2024 · 🏁 Shell Qatar 2025</span></div>
+              <div class="rsp-row"><strong>Certifications</strong><span>CSWP · MATLAB · HP Academy · FIA</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="resume-actions">
+          <p>Full résumé available for download. Includes complete project details, engineering calculations, and competition records.</p>
+          <a href="assets/Ibrahim_Reda_Wasfy_CV.pdf" class="btn btn-primary btn-large" download>
+            ⬇ Download PDF CV
+          </a>
+          <div class="resume-links">
+            <a href="https://ibrahimwasfy.github.io" target="_blank" rel="noopener" class="resume-link">GitHub Portfolio ↗</a>
+            <a href="https://linkedin.com/in/Ibrahimwasfy" target="_blank" rel="noopener" class="resume-link">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ CONTACT ═══════════════════════════════════ -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-label">10 / CONTACT</div>
+      <h2 id="contact-heading" class="section-title">Get in <em>touch.</em></h2>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <p class="contact-lead">Open to opportunities in vehicle dynamics, motorsport engineering, Formula Student, and automotive R&amp;D. Let's build something fast.</p>
+          <div class="contact-details">
+            <a href="mailto:ibrahimreda527@gmail.com" class="contact-item">
+              <span class="ci-icon">✉</span>
+              <div>
+                <strong>Email</strong>
+                <span>ibrahimreda527@gmail.com</span>
+              </div>
+            </a>
+            <a href="tel:+201550886532" class="contact-item">
+              <span class="ci-icon">📱</span>
+              <div>
+                <strong>Phone</strong>
+                <span>+20 155 088 6532</span>
+              </div>
+            </a>
+            <div class="contact-item">
+              <span class="ci-icon">📍</span>
+              <div>
+                <strong>Location</strong>
+                <span>Obour City, Cairo, Egypt</span>
+              </div>
+            </div>
+            <a href="https://linkedin.com/in/Ibrahimwasfy" target="_blank" rel="noopener" class="contact-item">
+              <span class="ci-icon">in</span>
+              <div>
+                <strong>LinkedIn</strong>
+                <span>linkedin.com/in/Ibrahimwasfy</span>
+              </div>
+            </a>
+            <a href="https://ibrahimwasfy.github.io" target="_blank" rel="noopener" class="contact-item">
+              <span class="ci-icon">⌗</span>
+              <div>
+                <strong>GitHub</strong>
+                <span>ibrahimwasfy.github.io</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-org">Organisation</label>
+            <input type="text" id="cf-org" name="organisation" placeholder="Company / Team (optional)" />
+          </div>
+          <div class="form-group">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" name="message" rows="5" placeholder="Tell me about the opportunity or project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message →</button>
+          <div class="form-note">This form opens your email client. Alternatively, email directly at ibrahimreda527@gmail.com</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">IRW</div>
+          <p>Automotive Design Engineer<br />Cairo, Egypt</p>
+        </div>
+        <div class="footer-nav">
+          <strong>Navigation</strong>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#highlights">Highlights</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <strong>Contact</strong>
+          <ul>
+            <li><a href="mailto:ibrahimreda527@gmail.com">ibrahimreda527@gmail.com</a></li>
+            <li><a href="https://linkedin.com/in/Ibrahimwasfy" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://ibrahimwasfy.github.io" target="_blank" rel="noopener">GitHub Portfolio</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Ibrahim Reda Wasfy · Automotive Engineer</span>
+        <a href="#hero" class="back-to-top" aria-label="Back to top">↑ Top</a>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animateCursor() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-    document.querySelectorAll('a, button, .exp-item, .project-card, .ach-card, .intern-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.width = '20px'; cursor.style.height = '20px';
-        ring.style.width = '52px'; ring.style.height = '52px';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.width = '12px'; cursor.style.height = '12px';
-        ring.style.width = '36px'; ring.style.height = '36px';
-      });
-    });
-
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), 60);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => observer.observe(el));
-
-    // Stagger siblings
-    document.querySelectorAll('.exp-list, .projects-grid, .ach-grid, .intern-grid').forEach(parent => {
-      const children = parent.querySelectorAll('.reveal');
-      children.forEach((child, i) => {
-        child.style.transitionDelay = (i * 0.08) + 's';
-      });
-    });
-
-    // Nav active state
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
