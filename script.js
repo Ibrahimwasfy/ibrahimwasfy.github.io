@@ -93,7 +93,7 @@ const projectsData = [
     filter: 'eco-marathon',
     year: '2024–2025',
     badge: 'Electric',
-    image: 'assets/projects/shell-eco-marathon/prototype.jpg',
+    image: 'assets/projects/IMG_7080.heic',
     tools: ['SolidWorks', 'Microsoft Excel'],
     overview: 'Electric prototype vehicle developed in parallel with the gasoline urban car for Shell Eco-Marathon Qatar 2025. Full development cycle from concept through competition.',
     objectives: [
