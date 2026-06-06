@@ -16,7 +16,7 @@ const projectsData = [
     filter: 'formula-student',
     year: '2025–2026',
     badge: 'FSUK',
-    image: 'assets/projects/formulastudent/Render.png',
+    image: 'assets/projects/Render.png',
     tools: ['SolidWorks', 'MATLAB', 'Optimum Kinematics', 'Excel'],
     overview: 'Complete ownership of the steering system for the HFS Racing Team Formula Student prototype targeting Formula Student UK. From first-principles geometry through to fully validated assembly.',
     objectives: [
@@ -55,7 +55,7 @@ const projectsData = [
     filter: 'eco-marathon',
     year: '2024–2025',
     badge: '6th Place',
-    image: 'assets/projects/shell-eco-marathon/urban.jpg',
+    image: 'assets/projects/urban.jpg',
     tools: ['SolidWorks', 'Microsoft Excel'],
     overview: 'Full vehicle development from scratch for Shell Eco-Marathon Qatar 2025 in the Urban Gasoline category. Completed in parallel with an electric prototype. Finished 6th internationally after passing technical inspection for two consecutive years.',
     objectives: [
@@ -93,7 +93,7 @@ const projectsData = [
     filter: 'eco-marathon',
     year: '2024–2025',
     badge: 'Electric',
-    image: 'assets/projects/shellecomarathon/IMG_7080.heic',
+    image: 'assets/projects/zomoroda.jpg',
     tools: ['SolidWorks', 'Microsoft Excel'],
     overview: 'Electric prototype vehicle developed in parallel with the gasoline urban car for Shell Eco-Marathon Qatar 2025. Full development cycle from concept through competition.',
     objectives: [
