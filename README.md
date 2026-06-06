@@ -1,84 +1,85 @@
-# Aurora - Free Portfolio Website Template
+# Ibrahim Reda Wasfy — Portfolio Website
 
-A modern, dark-themed portfolio template inspired by the Northern Lights with comprehensive sections and smooth animations.
+## Quick Start
 
-![Aurora Template - A Freefolio Template](screenshot-aurora.png "Aurora Template - Screenshot")
+1. Copy your CV PDF to `assets/` named `Ibrahim_Reda_Wasfy_CV.pdf`
+2. Add your profile photo as `assets/profile/profile.jpg` (600×800px)
+3. Open `index.html` in a browser — everything works without a server
 
-## Features
+## Folder Structure
 
-✅ Fast
+```
+portfolio/
+├── index.html
+├── style.css
+├── script.js
+├── assets/
+│   ├── Ibrahim_Reda_Wasfy_CV.pdf   ← your CV
+│   ├── profile/
+│   │   └── profile.jpg             ← your photo (600×800px recommended)
+│   ├── projects/
+│   │   ├── formula-student/        ← FSUK project images
+│   │   ├── shell-eco-marathon/     ← Shell project images
+│   │   └── ever-egypt/             ← EVER Egypt project images
+│   └── gallery/
+│       ├── cad/                    ← SolidWorks screenshots, renders
+│       ├── simulation/             ← FEA, MATLAB, IPG CarMaker plots
+│       ├── manufacturing/          ← Workshop photos
+│       ├── testing/                ← Track testing photos
+│       └── competition/            ← Competition photos and podium shots
+└── README.md
+```
 
-✅ FREE
+## Adding Images
 
-✅ Mobile Responsive
+### Profile Photo
+- File: `assets/profile/profile.jpg`
+- Size: 600×800px (3:4 ratio)
+- The frame already has a gold gradient overlay
 
-✅ SEO Friendly
+### Project Images
+- Size: 800×500px (16:10)
+- Update `image` field in `projectsData` in `script.js`
 
-✅ Compatible with any web server
+### Gallery
+In `script.js`, uncomment and fill in the `galleryData` array:
+```js
+{ src: 'assets/gallery/cad/steering.jpg', caption: 'Steering Assembly', category: 'cad' }
+```
 
-✅ 0 Dependencies
+## Adding a New Project
 
-✅ Dark theme with Aurora Borealis-inspired gradients
+In `script.js`, add to `projectsData`:
+```js
+{
+  id: 'unique-id',
+  title: 'Project Title',
+  category: 'Category Label',
+  filter: 'formula-student',  // or: eco-marathon, ev
+  year: '2026',
+  badge: 'Badge Text',
+  image: 'assets/projects/folder/image.jpg',
+  tools: ['SolidWorks', 'MATLAB'],
+  overview: 'Brief project overview...',
+  objectives: ['Objective 1', 'Objective 2'],
+  challenges: ['Challenge 1'],
+  results: [{ value: '1st', label: 'Category Name' }],
+  process: ['Step 1', 'Step 2'],
+}
+```
 
-✅ Smooth CSS animations and transitions
+## Deployment
 
-✅ Comprehensive sections for complete portfolio
+### GitHub Pages (Free — Recommended)
+1. Create repo named `ibrahimwasfy.github.io` (matches your existing GitHub)
+2. Push all files to main branch
+3. Settings → Pages → Source: main / root
+4. Live at `https://ibrahimwasfy.github.io`
 
-✅ Progress bars for skills visualization
+### Netlify (Drag & Drop)
+1. Go to [netlify.com](https://netlify.com)
+2. New site → Deploy manually → Drag the `portfolio/` folder
+3. Instantly live with free domain
 
-✅ Interactive hover effects
-
-## Sections Included
-
-1. **Hero** - Eye-catching introduction with social links
-2. **About** - Personal introduction with statistics
-3. **Experience** - Timeline-based work history
-4. **Skills** - Technical skills with animated progress bars
-5. **Services** - Services offered with icons
-6. **Portfolio** - Project showcase with technology tags
-7. **Testimonials** - Client reviews and ratings
-8. **Blog** - Latest blog posts preview
-9. **Contact** - Contact form and information
-
-## How to use
-
-1. Clone or manually download the code
-2. Navigate to the "aurora" folder
-3. Edit the `index.html` file with your personal information:
-   - Replace "Alex Aurora" with your name
-   - Update all section content with your information
-   - Modify the work experience timeline
-   - Add your own projects in the Portfolio section
-   - Update contact information and social links
-   - Customize the blog posts or remove the section
-4. Open the `index.html` file in your browser to preview
-5. If everything looks good, upload it to your server
-
-## Customization Tips
-
-- The color scheme uses aurora-inspired colors (green, blue, purple, pink)
-- All animations are pure CSS - no JavaScript dependencies
-- The aurora background effect creates a dynamic, living feel
-- Progress bars automatically animate when scrolled into view
-- Cards have hover effects for better interactivity
-- The mobile menu is fully responsive
-
-## Color Palette
-
-- Aurora Green: #00ffaa
-- Aurora Blue: #00aaff
-- Aurora Purple: #aa00ff
-- Aurora Pink: #ff00aa
-- Dark Background: #0a0e1a
-- Dark Card: #1a1f2e
-- Dark Border: #2a2f3e
-
-## Icons
-
-This template uses Font Awesome icons (loaded via CDN). You can easily change icons by visiting [Font Awesome](https://fontawesome.com/icons) and selecting different icon classes.
-
-## I am not a web developer, how do I setup my portfolio website?
-
-> Need help with setting up your portfolio website?
-
-Contact us at https://ossph.org
+### Custom Domain
+Add a `CNAME` file to the root with your domain, then configure DNS.
