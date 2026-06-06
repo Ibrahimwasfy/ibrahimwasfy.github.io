@@ -16,7 +16,7 @@ const projectsData = [
     filter: 'formula-student',
     year: '2025–2026',
     badge: 'FSUK',
-    image: 'assets/projects/formula-student/steering.jpg',
+    image: 'assets/projects/Render.png',
     tools: ['SolidWorks', 'MATLAB', 'Optimum Kinematics', 'Excel'],
     overview: 'Complete ownership of the steering system for the HFS Racing Team Formula Student prototype targeting Formula Student UK. From first-principles geometry through to fully validated assembly.',
     objectives: [
