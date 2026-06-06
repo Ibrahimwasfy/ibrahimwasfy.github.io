@@ -336,10 +336,9 @@ function renderProjects() {
 function createProjectCard(p) {
   const tools = p.tools.map(t => `<span class="pc-tool">${t}</span>`).join('');
   const hasImage = p.image && p.image !== '';
-  const imgHtml = hasImage
-    ? `<img src="${p.image}" alt="${p.title}" onerror="this.parentElement.classList.add('no-img')" loading="lazy" />`
-    : '';
-  const placeholderHtml = `
+  const imageContent = hasImage
+  ? `<img src="${p.image}" alt="${p.title}" loading="lazy" />`
+  : `
     <div class="pc-image-placeholder">
       <span>🏎️</span>
       <small>Add image to: ${p.image || 'assets/projects/'}</small>
@@ -348,9 +347,9 @@ function createProjectCard(p) {
   return `
     <article class="project-card" data-filter="${p.filter}" data-id="${p.id}" role="button" tabindex="0" aria-label="View ${p.title} project details">
       <div class="pc-image">
-        ${imgHtml}${placeholderHtml}
-        <div class="pc-badge">${p.badge}</div>
-      </div>
+  ${imageContent}
+  <div class="pc-badge">${p.badge}</div>
+</div>
       <div class="pc-body">
         <div class="pc-category">${p.category} · ${p.year}</div>
         <h3 class="pc-title">${p.title}</h3>
