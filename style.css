@@ -925,16 +925,6 @@ opacity .25s ease;
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(8px);
 }
-.modal-top{
-
-    display:grid;
-
-    grid-template-columns:1fr 360px;
-
-    gap:40px;
-
-    align-items:start;
-   
 .modal-content {
   position: relative; z-index: 1;
   background: var(--bg-3);
