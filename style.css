@@ -872,6 +872,40 @@ section:nth-child(even) { background: var(--bg-2); }
 .pc-cta::after { content: '→'; transition: transform 0.2s; }
 .project-card:hover .pc-cta::after { transform: translateX(4px); }
 
+/*===============================
+MODAL HERO IMAGE
+================================*/
+
+.modal-hero{
+
+    position:absolute;
+
+    top:40px;
+
+    right:45px;
+
+    width:340px;
+
+    z-index:5;
+
+    pointer-events:none;
+
+}
+
+.modal-hero-image{
+
+    width:100%;
+
+    border-radius:16px;
+
+    border:1px solid rgba(201,164,73,.35);
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.45);
+
+}
+
 /* ── PROJECT MODAL ───────────────────────────────────────────── */
 .modal {
   position: fixed; inset: 0; z-index: 2000;
