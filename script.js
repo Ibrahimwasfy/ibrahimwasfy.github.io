@@ -337,7 +337,15 @@ function createProjectCard(p) {
   const tools = p.tools.map(t => `<span class="pc-tool">${t}</span>`).join('');
   const hasImage = p.image && p.image !== '';
   const imageContent = hasImage
-  ? `<img src="${p.image}" alt="${p.title}" loading="lazy" />`
+  ? `<img
+
+class="project-card-image"
+
+src="${p.image}"
+
+alt="${p.title}"
+
+loading="lazy">`
   : `
     <div class="pc-image-placeholder">
       <span>🏎️</span>
