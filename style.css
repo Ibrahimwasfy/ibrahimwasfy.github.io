@@ -905,7 +905,15 @@ MODAL HERO IMAGE
     0 25px 60px rgba(0,0,0,.45);
 
 }
+.modal-hero-image{
 
+opacity:0;
+
+transition:
+
+opacity .25s ease;
+
+}
 /* ── PROJECT MODAL ───────────────────────────────────────────── */
 .modal {
   position: fixed; inset: 0; z-index: 2000;
