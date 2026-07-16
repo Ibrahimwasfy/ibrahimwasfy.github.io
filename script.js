@@ -493,6 +493,7 @@ clone.remove();
 }
 
 function buildModalContent(p) {
+
   const objectives = p.objectives.map(o => `<li>${o}</li>`).join('');
   const challenges = p.challenges.map(c => `<li>${c}</li>`).join('');
   const process = p.process.map((s, i) => `<li><strong>${i + 1}.</strong> ${s}</li>`).join('');
@@ -504,21 +505,38 @@ function buildModalContent(p) {
     </div>`).join('');
 
   return `
-  <div class="modal-hero">
 
-    <img
-        class="modal-hero-image"
-        src="${p.image}"
-        alt="${p.title}"
-    >
+    <div class="modal-top">
 
-</div>
-    <div class="modal-tag">${p.category} · ${p.year}</div>
-    <h2 class="modal-title">${p.title}</h2>
+        <div class="modal-left">
 
-    <div class="modal-section">
-      <h4>Overview</h4>
-      <p>${p.overview}</p>
+            <div class="modal-tag">
+                ${p.category} · ${p.year}
+            </div>
+
+            <h2 class="modal-title">
+                ${p.title}
+            </h2>
+
+            <div class="modal-section">
+
+                <h4>Overview</h4>
+
+                <p>${p.overview}</p>
+
+            </div>
+
+        </div>
+
+        <div class="modal-hero">
+
+            <img
+                class="modal-hero-image"
+                src="${p.image}"
+                alt="${p.title}">
+
+        </div>
+
     </div>
 
     <div class="modal-section">
@@ -544,9 +562,10 @@ function buildModalContent(p) {
     <div class="modal-section">
       <h4>Results</h4>
       <div class="modal-results">${results}</div>
-    </div>`;
-}
+    </div>
 
+  `;
+}
 /* ── GALLERY ─────────────────────────────────────────────────── */
 function renderGallery() {
   const grid = document.getElementById('galleryGrid');
