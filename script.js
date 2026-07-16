@@ -400,7 +400,71 @@ function initModal() {
     if (!project || !modal) return;
 
     const body = document.getElementById('modalBody');
+const clickedCard =
+document.querySelector(
+`.project-card[data-id="${id}"] img`
+);
+
+const startRect =
+clickedCard.getBoundingClientRect();
     body.innerHTML = buildModalContent(project);
+     const modalImage =
+body.querySelector(".modal-hero-image");
+
+requestAnimationFrame(()=>{
+
+const endRect =
+modalImage.getBoundingClientRect();
+
+const clone =
+clickedCard.cloneNode(true);
+
+clone.style.position="fixed";
+
+clone.style.left=startRect.left+"px";
+
+clone.style.top=startRect.top+"px";
+
+clone.style.width=startRect.width+"px";
+
+clone.style.height=startRect.height+"px";
+
+clone.style.margin="0";
+
+clone.style.objectFit="cover";
+
+clone.style.borderRadius="16px";
+
+clone.style.zIndex="99999";
+
+clone.style.transition=
+"all .75s cubic-bezier(.22,1,.36,1)";
+
+document.body.appendChild(clone);
+
+modalImage.style.opacity="0";
+
+requestAnimationFrame(()=>{
+
+clone.style.left=endRect.left+"px";
+
+clone.style.top=endRect.top+"px";
+
+clone.style.width=endRect.width+"px";
+
+clone.style.height=endRect.height+"px";
+
+});
+
+clone.addEventListener("transitionend",()=>{
+
+modalImage.style.opacity="1";
+
+clone.remove();
+
+},{once:true});
+
+});
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     modal.querySelector('.modal-close').focus();
