@@ -236,7 +236,7 @@ section:nth-child(even) { background: var(--bg-2); }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px clamp(20px, 4vw, 60px) 80px;
+  padding: 70px clamp(20px, 4vw, 60px) 40px;
   position: relative;
   overflow: hidden;
   gap: 60px;
