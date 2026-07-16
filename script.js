@@ -432,6 +432,15 @@ function buildModalContent(p) {
     </div>`).join('');
 
   return `
+  <div class="modal-hero">
+
+    <img
+        class="modal-hero-image"
+        src="${p.image}"
+        alt="${p.title}"
+    >
+
+</div>
     <div class="modal-tag">${p.category} · ${p.year}</div>
     <h2 class="modal-title">${p.title}</h2>
 
