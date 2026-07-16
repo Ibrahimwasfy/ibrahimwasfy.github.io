@@ -925,6 +925,16 @@ opacity .25s ease;
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(8px);
 }
+.modal-top{
+
+    display:grid;
+
+    grid-template-columns:1fr 360px;
+
+    gap:40px;
+
+    align-items:start;
+   
 .modal-content {
   position: relative; z-index: 1;
   background: var(--bg-3);
@@ -951,7 +961,6 @@ opacity .25s ease;
   margin-bottom: 12px;
 }
 .modal-title {
-   padding-right:420px;
   font-family: var(--ff-display);
   font-size: clamp(28px, 4vw, 48px);
   margin-bottom: 24px;
