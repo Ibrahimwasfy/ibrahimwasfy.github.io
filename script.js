@@ -11,7 +11,7 @@
 const projectsData = [
   {
     id: 'fsuk-steering',
-    title: 'Formula Student One-Seater — Steering System',
+    title: 'One-Seater Race Car\nFormula Student UK',
     category: 'Formula Student Race Car',
     filter: 'formula-student',
     year: '2025–2026',
