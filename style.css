@@ -1437,6 +1437,33 @@ opacity .25s ease;
 }
 .rh-title { font-size: 14px; color: var(--text-2); margin: 4px 0; }
 .rh-contact { font-family: var(--ff-mono); font-size: 11px; color: var(--text-3); }
+.rh-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.rh-socials a {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: #9aa0b5;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.rh-socials a:hover {
+  color: #d4af37;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+}
 .resume-sections-preview { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
 .rsp-row {
   display: flex; gap: 12px;
