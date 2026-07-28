@@ -257,73 +257,294 @@ function initNav() {
 
 /* ── HERO CANVAS (Animated circuit lines) ─────────────────────── */
 function initHeroCanvas() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, nodes, frame;
 
-  function resize() {
+    const canvas = document.getElementById("heroCanvas");
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    let w;
+    let h;
+    let animationId;
+    let time = 0;
+
+    const COLORS = {
+        gold: "#c8a84b",
+        white: "rgba(255,255,255,0.18)",
+        blue: "rgba(90,170,255,0.25)",
+        grid: "rgba(255,255,255,0.035)"
+    };
+
+    let particles = [];
+    let engineeringNodes = [];
+   function resize() {
+
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
-    initNodes();
-  }
 
-  function initNodes() {
-    nodes = Array.from({ length: 60 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 1.5 + 0.5,
-    }));
-  }
+    createParticles();
+    createEngineeringNodes();
 
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    nodes.forEach(n => {
-      n.x += n.vx; n.y += n.vy;
-      if (n.x < 0 || n.x > w) n.vx *= -1;
-      if (n.y < 0 || n.y > h) n.vy *= -1;
-    });
+}
+function createParticles() {
 
-    // Connect nearby nodes
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 160) {
-          const alpha = (1 - dist / 160) * 0.3;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(200,168,75,${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
-        }
-      }
+    particles = [];
+
+    const count = Math.max(30, Math.floor(w / 45));
+
+    for (let i = 0; i < count; i++) {
+
+        particles.push({
+
+            x: Math.random() * w,
+            y: Math.random() * h,
+
+            vx: (Math.random() - 0.5) * 0.08,
+            vy: (Math.random() - 0.5) * 0.08,
+
+            radius: Math.random() * 1.2 + 0.4
+
+        });
+
     }
 
-    // Draw nodes
-    nodes.forEach(n => {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,168,75,0.5)';
-      ctx.fill();
+}
+   function createEngineeringNodes() {
+
+    const cx = w * 0.68;
+    const cy = h * 0.55;
+
+    engineeringNodes = [
+
+        {name:"FrontLeft",x:cx-170,y:cy-80},
+        {name:"FrontRight",x:cx-170,y:cy+80},
+
+        {name:"RearLeft",x:cx+170,y:cy-80},
+        {name:"RearRight",x:cx+170,y:cy+80},
+
+        {name:"FrontBulkhead",x:cx-120,y:cy},
+
+        {name:"MainHoop",x:cx,y:cy},
+
+        {name:"RearBulkhead",x:cx+120,y:cy},
+
+        {name:"CG",x:cx+15,y:cy},
+
+        {name:"Engine",x:cx+90,y:cy},
+
+        {name:"Rack",x:cx-145,y:cy}
+
+    ];
+
+}
+   function drawGrid() {
+
+    ctx.save();
+
+    ctx.strokeStyle = COLORS.grid;
+
+    ctx.lineWidth = 1;
+
+    for(let x=0;x<w;x+=50){
+
+        ctx.beginPath();
+
+        ctx.moveTo(x,0);
+
+        ctx.lineTo(x,h);
+
+        ctx.stroke();
+
+    }
+
+    for(let y=0;y<h;y+=50){
+
+        ctx.beginPath();
+
+        ctx.moveTo(0,y);
+
+        ctx.lineTo(w,y);
+
+        ctx.stroke();
+
+    }
+
+    ctx.lineWidth = 1.5;
+
+    ctx.strokeStyle = "rgba(255,255,255,0.06)";
+
+    for(let x=0;x<w;x+=250){
+
+        ctx.beginPath();
+
+        ctx.moveTo(x,0);
+
+        ctx.lineTo(x,h);
+
+        ctx.stroke();
+
+    }
+
+    for(let y=0;y<h;y+=250){
+
+        ctx.beginPath();
+
+        ctx.moveTo(0,y);
+
+        ctx.lineTo(w,y);
+
+        ctx.stroke();
+
+    }
+
+    ctx.restore();
+
+}
+  function updateParticles(){
+
+    particles.forEach(p=>{
+
+        p.x+=p.vx;
+        p.y+=p.vy;
+
+        if(p.x<0||p.x>w)p.vx*=-1;
+        if(p.y<0||p.y>h)p.vy*=-1;
+
     });
 
-    frame = requestAnimationFrame(draw);
+}
+  function drawParticles(){
+
+    particles.forEach(p=>{
+
+        ctx.beginPath();
+
+        ctx.arc(
+
+            p.x,
+            p.y,
+            p.radius,
+            0,
+            Math.PI*2
+
+        );
+
+        ctx.fillStyle=COLORS.gold;
+
+        ctx.globalAlpha=.45;
+
+        ctx.fill();
+
+    });
+
+    ctx.globalAlpha=1;
+
+}
+ function drawParticleConnections(){
+
+    for(let i=0;i<particles.length;i++){
+
+        for(let j=i+1;j<particles.length;j++){
+
+            const dx=particles[i].x-particles[j].x;
+            const dy=particles[i].y-particles[j].y;
+
+            const dist=Math.hypot(dx,dy);
+
+            if(dist<140){
+
+                ctx.strokeStyle=
+                `rgba(200,168,75,${
+                (1-dist/140)*0.15
+                })`;
+
+                ctx.lineWidth=.5;
+
+                ctx.beginPath();
+
+                ctx.moveTo(
+
+                    particles[i].x,
+                    particles[i].y
+
+                );
+
+                ctx.lineTo(
+
+                    particles[j].x,
+                    particles[j].y
+
+                );
+
+                ctx.stroke();
+
+            }
+
+        }
+
+    }
   }
+   function drawEngineeringNodes(){
 
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-  draw();
+    engineeringNodes.forEach(node=>{
 
-  // Reduce animation when not visible
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(frame);
-    else draw();
-  });
+        ctx.beginPath();
+
+        ctx.arc(
+
+            node.x,
+            node.y,
+            3,
+            0,
+            Math.PI*2
+
+        );
+
+        ctx.fillStyle=COLORS.blue;
+
+        ctx.fill();
+
+    });
+
+}
+  function render(){
+
+    time+=0.01;
+
+    ctx.clearRect(0,0,w,h);
+
+    drawGrid();
+
+    updateParticles();
+
+    drawParticleConnections();
+
+    drawParticles();
+
+    drawEngineeringNodes();
+
+    animationId=requestAnimationFrame(render);
+
+}
+   window.addEventListener("resize",resize);
+
+resize();
+
+render();
+
+document.addEventListener("visibilitychange",()=>{
+
+    if(document.hidden){
+
+        cancelAnimationFrame(animationId);
+
+    }else{
+
+        render();
+
+    }
+
+});
 }
 
 /* ── RENDER PROJECTS ─────────────────────────────────────────── */
