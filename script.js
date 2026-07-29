@@ -90,7 +90,7 @@ const projectsData = [
     id: 'electric-prototype',
     title: 'Electric Prototype Car — Shell Eco-Marathon Qatar 2025',
     category: 'Shell Eco-Marathon',
-    filter: 'eco-marathon',
+    filter: ['eco-marathon','ev'],
     year: '2024–2025',
     badge: 'Electric',
     image: 'assets/projects/Prototype.jpg',
