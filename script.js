@@ -801,8 +801,13 @@ loading="lazy">`
     </div>`;
 
   return `
-    <article class="project-card" data-filter="${p.filter}" data-id="${p.id}" role="button" tabindex="0" aria-label="View ${p.title} project details">
-      <div class="pc-image">
+    <<article
+  class="project-card"
+  data-filter="${p.filters.join(' ')}"
+  data-id="${p.id}"
+  role="button"
+  tabindex="0"
+  aria-label="View ${p.title} project details">
   ${imageContent}
   <div class="pc-badge">${p.badge}</div>
 </div>
@@ -830,7 +835,9 @@ function initFilters() {
 
       const filter = btn.dataset.filter;
       grid.querySelectorAll('.project-card').forEach(card => {
-        const match = filter === 'all' || card.dataset.filter === filter;
+       const match =
+  filter === 'all' ||
+  card.dataset.filter.split(' ').includes(filter);
         card.style.display = match ? '' : 'none';
       });
     });
