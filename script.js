@@ -178,7 +178,7 @@ const galleryData = [
   { src: '', caption: 'Ackermann Geometry Analysis', category: 'cad', placeholder: true },
   { src: '', caption: 'FEA Stress Analysis — Steering Components', category: 'simulation', placeholder: true },
   { src: '', caption: 'IPG CarMaker Simulation', category: 'simulation', placeholder: true },
-  { src: '', caption: 'EVER Egypt 2024 — Triple Podium', category: 'competition', placeholder: true },
+  { src: 'assets/gallery/ever/IMG_3932.jpg', caption: 'EVER Egypt 2024 — Triple Podium', category: 'competition', placeholder: true },
   { src: '', caption: 'Shell Eco-Marathon Qatar 2025', category: 'competition', placeholder: true },
   { src: '', caption: 'Manufacturing Phase', category: 'manufacturing', placeholder: true },
   { src: '', caption: 'Track Testing Session', category: 'testing', placeholder: true },
