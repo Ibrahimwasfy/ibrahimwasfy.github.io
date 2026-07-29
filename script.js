@@ -93,7 +93,7 @@ const projectsData = [
     filter: 'eco-marathon',
     year: '2024–2025',
     badge: 'Electric',
-    image: 'assets/projects/zomoroda.jpg',
+    image: 'assets/projects/prototype.jpg',
     tools: ['SolidWorks', 'Microsoft Excel'],
     overview: 'Electric prototype vehicle developed in parallel with the gasoline urban car for Shell Eco-Marathon Qatar 2025. Full development cycle from concept through competition.',
     objectives: [
@@ -126,7 +126,7 @@ const projectsData = [
     filter: 'ev',
     year: '2023–2024',
     badge: '🥇 1st Place',
-    image: 'assets/projects/ever-egypt/urban-2024.jpg',
+    image: 'assets/projects/ever-egypt/zomoroda.jpg',
     tools: ['SolidWorks', 'Microsoft Excel'],
     overview: 'Full electric urban vehicle built from scratch to compete at EVER Egypt 2024. Won 1st Place in the Overall Dynamic Track, Design, and Cost categories — a triple podium at Egypt\'s premier electric vehicle competition.',
     objectives: [
