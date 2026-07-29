@@ -171,6 +171,7 @@ const galleryData = [
   // { src: 'assets/gallery/competition/ever-2024-podium.jpg', caption: 'EVER Egypt 2024 — 1st Place Podium', category: 'competition' },
   // { src: 'assets/gallery/manufacturing/workshop.jpg', caption: 'Manufacturing Phase — Urban EV', category: 'manufacturing' },
   // { src: 'assets/gallery/testing/track-test.jpg', caption: 'Track Testing — Pre-competition', category: 'testing' },
+    // { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
 
   // PLACEHOLDER entries (shown until you replace with real images):
   { src: '', caption: 'Steering Box Assembly — SolidWorks CAD', category: 'cad', placeholder: true },
