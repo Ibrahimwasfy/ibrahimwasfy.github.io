@@ -126,7 +126,7 @@ const projectsData = [
     filter: 'ev',
     year: '2023–2024',
     badge: '🥇 1st Place',
-    image: 'assets/projects/ever-egypt/zomoroda.jpg',
+    image: 'assets/projects/zomoroda.jpg',
     tools: ['SolidWorks', 'Microsoft Excel'],
     overview: 'Full electric urban vehicle built from scratch to compete at EVER Egypt 2024. Won 1st Place in the Overall Dynamic Track, Design, and Cost categories — a triple podium at Egypt\'s premier electric vehicle competition.',
     objectives: [
