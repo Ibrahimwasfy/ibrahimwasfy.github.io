@@ -123,7 +123,7 @@ const projectsData = [
     id: 'electric-urban-2024',
     title: 'Electric Urban Car — EVER Egypt 2024',
     category: 'EV Competition',
-    filter: 'ev',
+    filters: ['ev'],
     year: '2023–2024',
     badge: '🥇 1st Place',
     image: 'assets/projects/zomoroda.jpg',
@@ -801,13 +801,7 @@ loading="lazy">`
     </div>`;
 
   return `
-    <<article
-  class="project-card"
-  data-filter="${p.filters.join(' ')}"
-  data-id="${p.id}"
-  role="button"
-  tabindex="0"
-  aria-label="View ${p.title} project details">
+   <article class="project-card" data-filters="${p.filters.join(',')}" data-id="${p.id}" role="button" tabindex="0" aria-label="View ${p.title} project details">
   ${imageContent}
   <div class="pc-badge">${p.badge}</div>
 </div>
@@ -825,25 +819,40 @@ loading="lazy">`
 function initFilters() {
   const btns = document.querySelectorAll('.filter-btn');
   const grid = document.getElementById('projectsGrid');
+
   if (!grid) return;
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+
+      // Remove active state from all buttons
+      btns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+
+      // Activate clicked button
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
 
       const filter = btn.dataset.filter;
+
+      // Filter projects
       grid.querySelectorAll('.project-card').forEach(card => {
-       const match =
-  filter === 'all' ||
-  card.dataset.filter.split(' ').includes(filter);
+
+        const projectFilters = card.dataset.filters
+          ? card.dataset.filters.split(',')
+          : [];
+
+        const match =
+          filter === 'all' ||
+          projectFilters.includes(filter);
+
         card.style.display = match ? '' : 'none';
       });
     });
   });
 }
-
 /* ── PROJECT MODAL ───────────────────────────────────────────── */
 function initModal() {
   const modal = document.getElementById('projectModal');
