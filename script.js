@@ -182,7 +182,9 @@ const galleryData = [
   { src: '', caption: 'Shell Eco-Marathon Qatar 2025', category: 'competition', placeholder: true },
   { src: '', caption: 'Manufacturing Phase', category: 'manufacturing', placeholder: true },
   { src: '', caption: 'Track Testing Session', category: 'testing', placeholder: true },
- { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
+  { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
+  { src: 'assets/gallery/exotics/IMG_1357.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
+  { src: 'assets/gallery/mcv/IMG_9002.jpg', caption: 'Workshop — Diagnosis', category: 'mcv — commercial vehicles' },
 ];
 
 /* ═══════════════════════════════════ INIT ═══════════════════════════════════ */
