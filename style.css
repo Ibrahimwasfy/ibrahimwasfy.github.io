@@ -1305,7 +1305,8 @@ opacity .25s ease;
 
 /* ── GALLERY ─────────────────────────────────────────────────── */
 #gallery { background: var(--bg); }
-.gallery-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+.gallery-filters {  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 48px; }
 .gallery-filter {
   font-family: var(--ff-cond);
   font-size: 13px;
