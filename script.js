@@ -167,7 +167,7 @@ const projectsData = [
 const galleryData = [
 
   // PLACEHOLDER entries (shown until you replace with real images):
-  { src: 'assets/projects/Render.jpg', caption: 'Formula Student — SolidWorks CAD', category: 'cad' },
+  { src: 'assets/projects/Render.png', caption: 'Formula Student — SolidWorks CAD', category: 'cad' },
   { src: '', caption: 'Ackermann Geometry Analysis', category: 'cad' },
   { src: '', caption: 'FEA Stress Analysis — Steering Components', category: 'simulation'},
   { src: '', caption: 'IPG CarMaker Simulation', category: 'simulation' },
@@ -178,9 +178,10 @@ const galleryData = [
   { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
   { src: 'assets/gallery/exotics/IMG_1357.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
   { src: 'assets/gallery/exotics/IMG_1166.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
-  { src: 'assets/gallery/mcv/IMG_9002.jpg', caption: 'Workshop — Diagnosis', category: 'mcv — commercial vehicles' },
-  { src: 'assets/gallery/mcv/IMG_4399.jpg', caption: 'Workshop — Diagnosis', category: 'mcv — commercial vehicles' },
-  { src: 'assets/gallery/exotics/IMG_8288.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
+  { src: 'assets/gallery/mcv/IMG_9002.jpg', caption: 'MCV Training', category: 'commercial vehicles' },
+  { src: 'assets/gallery/mcv/IMG_4399.jpg', caption: 'MCV Training', category: 'commercial vehicles' },
+  { src: 'assets/gallery/exotics/IMG_8288.jpg', caption: 'Alfa Romeo Giulia Quadrifoglio - Ezz ELarab', category: 'exotics' },
+   
 ];
 
 /* ═══════════════════════════════════ INIT ═══════════════════════════════════ */
