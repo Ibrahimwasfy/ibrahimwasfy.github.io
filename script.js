@@ -165,23 +165,16 @@ const projectsData = [
    image files placed in assets/gallery/
    ─────────────────────────────────────────────────────────────── */
 const galleryData = [
-  // Replace src with your actual image paths:
-  // { src: 'assets/gallery/cad/steering-assembly.jpg', caption: 'Steering Box Assembly — SolidWorks', category: 'cad' },
-  // { src: 'assets/gallery/simulation/fea-steering.jpg', caption: 'FEA Stress Analysis — Steering Column', category: 'simulation' },
-  // { src: 'assets/gallery/competition/ever-2024-podium.jpg', caption: 'EVER Egypt 2024 — 1st Place Podium', category: 'competition' },
-  // { src: 'assets/gallery/manufacturing/workshop.jpg', caption: 'Manufacturing Phase — Urban EV', category: 'manufacturing' },
-  // { src: 'assets/gallery/testing/track-test.jpg', caption: 'Track Testing — Pre-competition', category: 'testing' },
-    // { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
 
   // PLACEHOLDER entries (shown until you replace with real images):
-  { src: '', caption: 'Steering Box Assembly — SolidWorks CAD', category: 'cad', placeholder: true },
-  { src: '', caption: 'Ackermann Geometry Analysis', category: 'cad', placeholder: true },
-  { src: '', caption: 'FEA Stress Analysis — Steering Components', category: 'simulation', placeholder: true },
-  { src: '', caption: 'IPG CarMaker Simulation', category: 'simulation', placeholder: true },
-  { src: 'assets/gallery/ever/IMG_4332.jpg', caption: 'EVER Egypt 2024 — Triple Podium', category: 'competition', placeholder: true },
-  { src: '', caption: 'Shell Eco-Marathon Qatar 2025', category: 'competition', placeholder: true },
-  { src: '', caption: 'Manufacturing Phase', category: 'manufacturing', placeholder: true },
-  { src: '', caption: 'Track Testing Session', category: 'testing', placeholder: true },
+  { src: 'assets/projects/Render.jpg', caption: 'Formula Student — SolidWorks CAD', category: 'cad' },
+  { src: '', caption: 'Ackermann Geometry Analysis', category: 'cad' },
+  { src: '', caption: 'FEA Stress Analysis — Steering Components', category: 'simulation'},
+  { src: '', caption: 'IPG CarMaker Simulation', category: 'simulation' },
+  { src: 'assets/gallery/ever/IMG_4332.jpg', caption: 'EVER Egypt 2024 — Triple Podium', category: 'competition'},
+  { src: '', caption: 'Shell Eco-Marathon Qatar 2025', category: 'competition'},
+  { src: '', caption: 'Manufacturing Phase', category: 'manufacturing' },
+  { src: '', caption: 'Track Testing Session', category: 'testing' },
   { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
   { src: 'assets/gallery/exotics/IMG_1357.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
   { src: 'assets/gallery/mcv/IMG_9002.jpg', caption: 'Workshop — Diagnosis', category: 'mcv — commercial vehicles' },
