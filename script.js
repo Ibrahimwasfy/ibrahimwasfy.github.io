@@ -185,6 +185,7 @@ const galleryData = [
   { src: 'assets/gallery/exotics/Mclaren.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
   { src: 'assets/gallery/exotics/IMG_1357.jpg', caption: 'Workshop — Diagnosis', category: 'exotics' },
   { src: 'assets/gallery/mcv/IMG_9002.jpg', caption: 'Workshop — Diagnosis', category: 'mcv — commercial vehicles' },
+  { src: 'assets/gallery/mcv/IMG_4399.jpg', caption: 'Workshop — Diagnosis', category: 'mcv — commercial vehicles' },
 ];
 
 /* ═══════════════════════════════════ INIT ═══════════════════════════════════ */
