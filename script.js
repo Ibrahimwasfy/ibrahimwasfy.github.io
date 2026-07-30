@@ -244,19 +244,29 @@ function initNav() {
     });
   });
 
-  // Active section highlight
-  const sections = document.querySelectorAll('section[id]');
-  const navItems = navbar.querySelectorAll('.nav-links a');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navItems.forEach(a => {
-          a.style.color = a.getAttribute('href') === `#${e.target.id}` ? 'var(--accent)' : '';
-        });
-      }
+ // Active section highlight
+const sections = document.querySelectorAll('section[id]');
+const navItems = navbar.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  const visibleSections = entries
+    .filter(entry => entry.isIntersecting)
+    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+  if (visibleSections.length > 0) {
+    const activeSection = visibleSections[0].target.id;
+
+    navItems.forEach(a => {
+      const isActive = a.getAttribute('href') === `#${activeSection}`;
+
+      a.style.color = isActive ? 'var(--accent)' : '';
     });
-  }, { threshold: 0.4 });
-  sections.forEach(s => observer.observe(s));
+  }
+}, {
+  threshold: [0.1, 0.25, 0.4, 0.6, 0.8]
+});
+
+sections.forEach(section => observer.observe(section));
 }
 
 /* ── HERO CANVAS (Animated circuit lines) ─────────────────────── */
