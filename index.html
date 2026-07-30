@@ -575,27 +575,32 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════ GALLERY ═══════════════════════════════════ -->
-  <section id="gallery" aria-labelledby="gallery-heading">
-    <div class="container">
-      <div class="section-label">06 / GALLERY</div>
-      <h2 id="gallery-heading" class="section-title">Engineering <em>work.</em></h2>
-      
-        <button class="gallery-filter active" data-gfilter="all">All</button>
-        <button class="gallery-filter" data-gfilter="cad">CAD Models</button>
-        <button class="gallery-filter" data-gfilter="simulation">Simulation</button>
-        <button class="gallery-filter" data-gfilter="manufacturing">Manufacturing</button>
-        <button class="gallery-filter" data-gfilter="testing">Testing</button>
-        <button class="gallery-filter" data-gfilter="competition">Competition</button>
-         <button class="gallery-filter" data-gfilter="exotics">Exotics</button>
-      </div>
-    
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-  </section>
+ <!-- ═══════════════════════════════════ GALLERY ═══════════════════════════════════ -->
+<section id="gallery" aria-labelledby="gallery-heading">
+  <div class="container">
 
+    <div class="section-label">06 / GALLERY</div>
+
+    <h2 id="gallery-heading" class="section-title">
+      Engineering <em>work.</em>
+    </h2>
+
+    <div class="gallery-filters">
+      <button class="gallery-filter active" data-gfilter="all">All</button>
+      <button class="gallery-filter" data-gfilter="cad">CAD Models</button>
+      <button class="gallery-filter" data-gfilter="simulation">Simulation</button>
+      <button class="gallery-filter" data-gfilter="manufacturing">Manufacturing</button>
+      <button class="gallery-filter" data-gfilter="testing">Testing</button>
+      <button class="gallery-filter" data-gfilter="competition">Competition</button>
+      <button class="gallery-filter" data-gfilter="exotics">Exotics</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Populated by JS -->
+    </div>
+
+  </div>
+</section>
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lb-close" aria-label="Close">&times;</button>
