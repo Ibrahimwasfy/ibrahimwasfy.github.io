@@ -167,6 +167,7 @@ const projectsData = [
 const galleryData = [
 
   // PLACEHOLDER entries (shown until you replace with real images):
+  { src: 'assets/projects/tv.jpg', caption: 'Formula Student — SolidWorks CAD', category: 'cad' },
   { src: 'assets/projects/Render.png', caption: 'Formula Student — SolidWorks CAD', category: 'cad' },
   { src: '', caption: 'Ackermann Geometry Analysis', category: 'cad' },
   { src: '', caption: 'FEA Stress Analysis — Steering Components', category: 'simulation'},
