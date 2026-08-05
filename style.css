@@ -1606,7 +1606,7 @@ opacity .25s ease;
   :root { --section-py: 80px; }
   #hero { flex-direction: column-reverse; align-items: flex-start; padding-top: 100px; }
   .hero-profile { width: 100%; flex-direction: row; gap: 24px; }
-  .profile-frame { width: 170px; aspect-ratio: 3/4;border-radius: var(--radius-lg);}
+  .profile-frame { width: 190px; aspect-ratio: 3/4;border-radius: var(--radius-lg);}
   .hero-stats { flex-wrap: wrap; gap: 16px; }
   .nav-links { display: none; }
   .nav-links.open {
