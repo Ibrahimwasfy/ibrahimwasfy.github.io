@@ -267,7 +267,7 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => observer.observe(section));
 }
 
-/* ── HERO CANVAS (Animated circuit lines) ─────────────────────── */
+/* ── HERO CANVAS (Animated Grid Only) ────────────────────────── */
 function initHeroCanvas() {
 
     const canvas = document.getElementById("heroCanvas");
@@ -278,146 +278,86 @@ function initHeroCanvas() {
     let w;
     let h;
     let animationId;
-    let time = 0;
-      let steeringAngle = 0;
+
     const COLORS = {
-        gold: "#c8a84b",
-        white: "rgba(255,255,255,0.18)",
-        blue: "rgba(90,170,255,0.25)",
         grid: "rgba(255,255,255,0.035)"
     };
 
-    let particles = [];
-    let engineeringNodes = [];
-   function resize() {
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
 
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    function drawGrid() {
 
-    createParticles();
-    createEngineeringNodes();
+        ctx.save();
+
+        // Small grid
+        ctx.strokeStyle = COLORS.grid;
+        ctx.lineWidth = 1;
+
+        for (let x = 0; x < w; x += 50) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+        }
+
+        for (let y = 0; y < h; y += 50) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+        }
+
+        // Major grid
+        ctx.strokeStyle = "rgba(255,255,255,0.06)";
+        ctx.lineWidth = 1.5;
+
+        for (let x = 0; x < w; x += 250) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+        }
+
+        for (let y = 0; y < h; y += 250) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+        }
+
+        ctx.restore();
+    }
+
+    function render() {
+
+        ctx.clearRect(0, 0, w, h);
+
+        drawGrid();
+
+        animationId = requestAnimationFrame(render);
+
+    }
+
+    window.addEventListener("resize", resize);
+
+    resize();
+
+    render();
+
+    document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden) {
+            cancelAnimationFrame(animationId);
+        } else {
+            render();
+        }
+
+    });
 
 }
-function createParticles() {
-
-    particles = [];
-
-    const count = Math.max(30, Math.floor(w / 45));
-
-    for (let i = 0; i < count; i++) {
-
-        particles.push({
-
-            x: Math.random() * w,
-            y: Math.random() * h,
-
-            vx: (Math.random() - 0.5) * 0.08,
-            vy: (Math.random() - 0.5) * 0.08,
-
-            radius: Math.random() * 1.2 + 0.4
-
-        });
-
-    }
-
-}
-   function createEngineeringNodes() {
-
-    const cx = w * 0.68;
-    const cy = h * 0.55;
-
-    engineeringNodes = [
-
-        {name:"FrontLeft",x:cx-170,y:cy-80},
-        {name:"FrontRight",x:cx-170,y:cy+80},
-
-        {name:"RearLeft",x:cx+170,y:cy-80},
-        {name:"RearRight",x:cx+170,y:cy+80},
-
-        {name:"FrontBulkhead",x:cx-120,y:cy},
-
-        {name:"MainHoop",x:cx,y:cy},
-
-        {name:"RearBulkhead",x:cx+120,y:cy},
-
-        {name:"CG",x:cx+15,y:cy},
-
-        {name:"Engine",x:cx+90,y:cy},
-
-        {name:"Rack",x:cx-145,y:cy}
-
-    ];
-
-}
-   function drawGrid() {
-
-    ctx.save();
-
-    ctx.strokeStyle = COLORS.grid;
-
-    ctx.lineWidth = 1;
-
-    for(let x=0;x<w;x+=50){
-
-        ctx.beginPath();
-
-        ctx.moveTo(x,0);
-
-        ctx.lineTo(x,h);
-
-        ctx.stroke();
-
-    }
-
-    for(let y=0;y<h;y+=50){
-
-        ctx.beginPath();
-
-        ctx.moveTo(0,y);
-
-        ctx.lineTo(w,y);
-
-        ctx.stroke();
-
-    }
-
-    ctx.lineWidth = 1.5;
-
-    ctx.strokeStyle = "rgba(255,255,255,0.06)";
-
-    for(let x=0;x<w;x+=250){
-
-        ctx.beginPath();
-
-        ctx.moveTo(x,0);
-
-        ctx.lineTo(x,h);
-
-        ctx.stroke();
-
-    }
-
-    for(let y=0;y<h;y+=250){
-
-        ctx.beginPath();
-
-        ctx.moveTo(0,y);
-
-        ctx.lineTo(w,y);
-
-        ctx.stroke();
-
-    }
-
-    ctx.restore();
-
-}
-  
-    ctx.clearRect(0,0,w,h);
-
-    drawGrid();
-
-    
 /* ── RENDER PROJECTS ─────────────────────────────────────────── */
 function renderProjects() {
   const grid = document.getElementById('projectsGrid');
